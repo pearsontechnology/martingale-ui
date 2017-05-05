@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sourceFiles=`find ./src/ -type f -name "*.less"`
+
+for sourceFile in $sourceFiles; do
+  destFile=`echo $sourceFile | sed 's/\.less$/\.css/'`
+  echo "Compiling $sourceFile to $destFile"
+  #./node_modules/.bin/lessc --clean-css="--s1 --advanced" $sourceFile>$destFile
+  ./node_modules/.bin/lessc $sourceFile>$destFile
+  echo "Compiled to $destFile"
+done

@@ -8,7 +8,7 @@
     "less-plugin-clean-css": "^1.5.1",
     "martingale-page-schema": "file:../page-schema",
     "martingale-provider": "file:../provider",
-    "martingale-ui-components": "file:../ui-components",
+    "martingale-ui-components": "file:../ui-components/",
     "martingale-utils": "file:../utils",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",

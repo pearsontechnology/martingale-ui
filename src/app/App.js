@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import {
   BrowserRouter as Router,
@@ -11,13 +10,82 @@ import {
   ContainerFluid
 } from 'martingale-ui-components';
 
-import Nav from '../components/nav';
+import Components from '../components';
+const {
+  Nav,
 
-const Pages = {
-  home(){
-    return <div>Welcome</div>
+  IconDashboard,
+  IconAlert,
+  IconConsumer,
+  IconInbox,
+  IconUser,
+  IconLogOut
+} = Components;
+
+const sideNavItems=[
+  {
+    caption: 'Dashboard',
+    Icon: IconDashboard,
+    linkTo: '/'
+  },
+  {
+    caption: 'Kitchen Sink',
+    Icon: IconAlert,
+    linkTo: '/kitchensink'
   }
-};
+];
+
+const topNavItems = [
+  {
+    Icon: IconInbox,
+    type: 'message',
+    items: [
+      {
+        type: 'message-preview',
+        content: (
+          <div className="media">
+              <span className="pull-left">
+                  <img className="media-object" src="http://placehold.it/50x50" alt="" />
+              </span>
+              <div className="media-body">
+                  <h5 className="media-heading"><strong>John Shirley</strong>
+                  </h5>
+                  <p className="small text-muted"><IconConsumer /> Yesterday at 4:32 PM</p>
+                  <p>John had a <IconConsumer /></p>
+              </div>
+          </div>
+        )
+      }
+    ]
+  },
+  {
+    Icon: IconAlert,
+    type: 'alert',
+    items: [
+      {
+        caption: <span>Alert Name <span className="label label-default">Alert Badge</span></span>
+      }
+    ]
+  },
+  {
+    caption: 'John Shirley',
+    Icon: IconUser,
+    items: [
+      {
+        caption: 'Profile',
+        Icon: IconUser,
+        linkTo: '/profile'
+      },
+      {divider: true},
+      {
+        caption: 'Log Out',
+        Icon: IconLogOut
+      },
+    ]
+  }
+];
+
+import Pages from './pages';
 
 const NoMatch = ({ location }) => (
   <ContainerFluid>
@@ -27,21 +95,25 @@ const NoMatch = ({ location }) => (
 
 const App = ()=>{
   const routes = Object.keys(Pages).map((route)=>{
-    return <Route key={route} exact path={`/${route}`} render={(match)=>{
+    const Page = Pages[route];
+    const {
+      path
+    } = Page;
+    return <Route key={route} exact path={path} render={(match)=>{
       const params = (match.match||{}).params;
-      const page = React.createElement(Pages[route], params);
+      const page = React.createElement(Page, params);
       return page;
     }} />
   });
   return (
     <Router>
       <div id="wrapper">
-        <Nav />
+        <Nav sideNavItems={sideNavItems} topNavItems={topNavItems} />
         <div id="page-wrapper">
           <Route render={({ location }) => (
               <Switch key={location.pathname} location={location}>
                 <Route exact path="/" render={(match)=>{
-                  return React.createElement(Pages.home, match.params);
+                  return React.createElement(Pages.Home, match.params);
                 }} />
                 {routes}
                 <Route component={NoMatch}/>

@@ -3558,6 +3558,17 @@ marked@^0.3.6:
     react-router-dom "^4.1.1"
     tcomb-form "^0.9.16"
 
+"martingale-ui-components@file:../ui-components/":
+  version "0.0.1"
+  dependencies:
+    martingale-utils "file:../utils/"
+    react "^15.5.4"
+    react-bootstrap "^0.31.0"
+    react-dom "^15.5.4"
+    react-icons "^2.2.3"
+    react-router-dom "^4.1.1"
+    tcomb-form "^0.9.16"
+
 "martingale-utils@file:../utils":
   version "0.0.1"
 

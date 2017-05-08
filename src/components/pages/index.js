@@ -1,9 +1,10 @@
 import ListingPage from './listing';
-import HeaderPage from './header';
+import {HeaderPage, PageHeader} from './header';
 import Page from './page';
 
 export default {
   ListingPage,
+  PageHeader,
   HeaderPage,
   Page
 };

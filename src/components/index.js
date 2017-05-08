@@ -16,4 +16,6 @@ const Components = {
   Provider
 };
 
+console.log(Object.keys(Components).sort())
+
 export default Components;

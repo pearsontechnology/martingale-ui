@@ -1,5 +1,5 @@
-//import UIComps from 'martingale-ui-components';
-import UIComps from '../../../ui-components';
+import UIComps from 'martingale-ui-components';
+//import UIComps from '../../../ui-components';
 import Nav from './nav';
 import PageSchema from 'martingale-page-schema';
 import Pages from './pages';

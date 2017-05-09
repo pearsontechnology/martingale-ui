@@ -6,15 +6,17 @@
   "dependencies": {
     "less": "^2.7.2",
     "less-plugin-clean-css": "^1.5.1",
-    "martingale-page-schema": "file:../page-schema",
-    "martingale-provider": "file:../provider",
-    "martingale-ui-components": "file:../ui-components/",
-    "martingale-utils": "file:../utils",
+    "martingale-page-schema": "^0.0.1",
+    "martingale-provider": "^0.0.1",
+    "martingale-ui-components": "^0.0.1",
+    "martingale-utils": "^0.0.1",
+    "martingale-charts": "^0.0.1",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"

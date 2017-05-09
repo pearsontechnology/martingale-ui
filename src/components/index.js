@@ -3,6 +3,7 @@ import UIComps from 'martingale-ui-components';
 import Nav from './nav';
 import PageSchema from 'martingale-page-schema';
 import Pages from './pages';
+import Charts from 'martingale-charts';
 import {
   Provider
 } from 'martingale-provider';
@@ -13,9 +14,10 @@ const Components = {
   ...Provider,
   ...PageSchema,
   ...Pages,
+  ...Charts,
   Provider
 };
 
-console.log(Object.keys(Components).sort())
+console.log(Object.keys(Components).sort().join(', '))
 
 export default Components;

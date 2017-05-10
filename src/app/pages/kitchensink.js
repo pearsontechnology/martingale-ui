@@ -614,5 +614,8 @@ const Page = ()=>pageSchemaToReact({
   components: Components});
 
 Page.path = '/kitchensink';
+Page.icon = 'Kitchensink';
+Page.sideNav = true;
+Page.caption = 'Kitchen Sink';
 
 export default Page;

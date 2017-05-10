@@ -14,7 +14,6 @@ import Components from '../components';
 const {
   Nav,
 
-  IconDashboard,
   IconAlert,
   IconConsumer,
   IconInbox,
@@ -22,18 +21,20 @@ const {
   IconLogOut
 } = Components;
 
-const sideNavItems=[
-  {
-    caption: 'Dashboard',
-    Icon: IconDashboard,
-    linkTo: '/'
-  },
-  {
-    caption: 'Kitchen Sink',
-    Icon: IconAlert,
-    linkTo: '/kitchensink'
-  }
-];
+import Pages from './pages';
+
+const sideNavItems=Object.keys(Pages).filter((key)=>Pages[key].sideNav).map((key)=>{
+  const page = Pages[key];
+  const caption = page.caption || key;
+  const linkTo = page.path;
+  const icon = page.icon || 'Unknown';
+  const Icon = Components[`Icon${icon}`] || Components.IconUnknown;
+  return {
+    caption,
+    Icon,
+    linkTo
+  };
+});
 
 const topNavItems = [
   {
@@ -84,8 +85,6 @@ const topNavItems = [
     ]
   }
 ];
-
-import Pages from './pages';
 
 const NoMatch = ({ location }) => (
   <ContainerFluid>

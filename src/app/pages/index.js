@@ -5,5 +5,5 @@ import APIs from './apis';
 export default {
   Home,
   KitchenSink,
-  APIs
+  ...APIs
 };

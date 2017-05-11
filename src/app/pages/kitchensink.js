@@ -49,7 +49,15 @@ const KongTestSchema = {
     booleanValue: {type: 'boolean', default: false},
     numberValue: {type: 'number'},
     stringArray: {type: 'array'},
-    enumValue: {type: "array", enum: ["exp", "nbf"]}
+    objectArray: {type: 'array', schema: {
+        fields: {
+          name: {type: "string", required: true},
+          value: {type: "string", required: true}
+        }
+      }},
+    arrayEnumValue: {type: "array", enum: ["exp", "nbf"]},
+    stringEnumValue: {type: "string", enum: ["exp", "nbf"]},
+    textarea: {type: "string", multiline: true}
   }
 };
 

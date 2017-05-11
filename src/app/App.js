@@ -96,8 +96,18 @@ const App = ()=>{
   const routes = Object.keys(Pages).map((route)=>{
     const Page = Pages[route];
     const {
-      path
+      path,
+      paths
     } = Page;
+    if(Array.isArray(paths)){
+      return paths.map((path)=>{
+        return <Route key={route} exact path={path} render={(match)=>{
+          const params = (match.match||{}).params;
+          const page = React.createElement(Page, params);
+          return page;
+        }} />
+      });
+    }
     return <Route key={route} exact path={path} render={(match)=>{
       const params = (match.match||{}).params;
       const page = React.createElement(Page, params);
@@ -111,9 +121,6 @@ const App = ()=>{
         <div id="page-wrapper">
           <Route render={({ location }) => (
               <Switch key={location.pathname} location={location}>
-                <Route exact path="/" render={(match)=>{
-                  return React.createElement(Pages.Home, match.params);
-                }} />
                 {routes}
                 <Route component={NoMatch}/>
               </Switch>

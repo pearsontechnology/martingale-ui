@@ -7,7 +7,7 @@ import {
 const KONG_ROOT="/api/kong";
 const KUBE_ROOT="/api/kube/api";
 
-const Page = ()=>pageSchemaToReact({
+const Page = (props)=>pageSchemaToReact({
   layout: {
     $type: 'div',
     children: {
@@ -32,7 +32,7 @@ const Page = ()=>pageSchemaToReact({
                 provide: {
                   data: {
                     url: `${KONG_ROOT}/status`,
-                    mapper:{$mapper: 'server?[server]:null'},
+                    mapper:{$mapper: 'props.server?[props.server]:null'},
                   }
                 },
                 Component: {$component: 'BarChart'},
@@ -57,7 +57,7 @@ const Page = ()=>pageSchemaToReact({
                 provide: {
                   data: {
                     url: `${KONG_ROOT}/status`,
-                    mapper:{$mapper: 'server?[server]:null'},
+                    mapper:{$mapper: 'props.server?[props.server]:null'},
                   }
                 },
                 Component: {$component: 'BarChart'},
@@ -81,7 +81,7 @@ const Page = ()=>pageSchemaToReact({
                 provide: {
                   data: {
                     url: `${KONG_ROOT}`,
-                    mapper:{$mapper: 'timers?[timers]:null'},
+                    mapper:{$mapper: 'props.timers?[props.timers]:null'},
                   }
                 },
                 Component: {$component: 'BarChart'},
@@ -95,7 +95,8 @@ const Page = ()=>pageSchemaToReact({
       }
     }
   },
-  components: Components
+  components: Components,
+  props
 });
 
 Page.path = '/';

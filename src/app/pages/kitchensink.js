@@ -613,7 +613,7 @@ const layout = {
   ],
   path: '/kitchensink',
   icon: 'Kitchensink',
-  sideNav: true,
+  //sideNav: true,
   caption: 'Kitchen Sink'
 };
 

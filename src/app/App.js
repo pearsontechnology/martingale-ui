@@ -27,33 +27,56 @@ const {
 
 import AppPages from './pages';
 
-const Pages = Object.keys(AppPages).reduce((Pages, key)=>{
-  const page = AppPages[key];
-  const type = typeof(page);
-  if(type==='string'){
-    const layout = JSON.parse(page);
-    return Object.assign(Pages, {[key]: (props)=>pageSchemaToReact({
-          layout,
-          components: Components,
-          props
-        })
-      });
-  }
-  if(type==='object'){
-    const handler = (props)=>pageSchemaToReact({
-          layout: page,
-          components: Components,
-          props
+const Pages = Object.keys(AppPages)
+  .sort((key1, key2)=>{
+    const page1 = AppPages[key1];
+    const page2 = AppPages[key2];
+    const caption1 = page1.caption || key1;
+    const caption2 = page2.caption || key2;
+    if(caption1==='Settings'){
+      return 1;
+    }
+    if(caption2==='Settings'){
+      return -1;
+    }
+    if(page1.isDashboard && page2.isDashboard){
+      return caption1.localeCompare(caption2);
+    }
+    if(page1.isDashboard){
+      return -1;
+    }
+    if(page2.isDashboard){
+      return 1;
+    }
+    return caption1.localeCompare(caption2);
+  })
+  .reduce((Pages, key)=>{
+    const page = AppPages[key];
+    const type = typeof(page);
+    if(type==='string'){
+      const layout = JSON.parse(page);
+      return Object.assign(Pages, {[key]: (props)=>pageSchemaToReact({
+            layout,
+            components: Components,
+            props
+          })
         });
-    handler.caption = page.caption;
-    handler.path = page.path;
-    handler.paths = page.paths;
-    handler.icon = page.icon;
-    handler.sideNav = page.sideNav;
-    return Object.assign(Pages, {[key]: handler});
-  }
-  return Object.assign(Pages, {[key]: page});
-}, {});
+    }
+    if(type==='object'){
+      const handler = (props)=>pageSchemaToReact({
+            layout: page,
+            components: Components,
+            props
+          });
+      handler.caption = page.caption;
+      handler.path = page.path;
+      handler.paths = page.paths;
+      handler.icon = page.icon;
+      handler.sideNav = page.sideNav;
+      return Object.assign(Pages, {[key]: handler});
+    }
+    return Object.assign(Pages, {[key]: page});
+  }, {});
 
 const sideNavItems=Object.keys(Pages).filter((key)=>Pages[key].sideNav).map((key)=>{
   const page = Pages[key];
@@ -68,6 +91,8 @@ const sideNavItems=Object.keys(Pages).filter((key)=>Pages[key].sideNav).map((key
   };
 });
 
+const topNavItems = [];
+/*
 const topNavItems = [
   {
     Icon: IconInbox,
@@ -117,6 +142,7 @@ const topNavItems = [
     ]
   }
 ];
+//*/
 
 const NoMatch = ({ location }) => (
   <ContainerFluid>

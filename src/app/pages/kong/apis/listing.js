@@ -5,7 +5,7 @@ const layout = {
   children: {
     $type: 'HeaderPage',
     props: {
-      title: 'API\'s'
+      title: 'APIs'
     },
     children: [
       {
@@ -64,7 +64,7 @@ const layout = {
   path: '/kong/apis',
   icon: 'API',
   sideNav: true,
-  caption: 'API\'s'
+  caption: 'APIs'
 };
 
 export default layout;

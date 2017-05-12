@@ -43,8 +43,8 @@ const layout = {
             },
             {
               delete: {$mapper: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${props.name}\``},
-              caption: 'Restart',
-              message: `Are you sure you want to restart \${name}?`
+              caption: 'Refresh',
+              message: `Are you sure you want to refresh \${name}?`
             }
           ]
         }

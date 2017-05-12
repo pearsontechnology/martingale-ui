@@ -17,12 +17,6 @@ import {
 import Components from '../components';
 const {
   Nav,
-
-  IconAlert,
-  IconConsumer,
-  IconInbox,
-  IconUser,
-  IconLogOut
 } = Components;
 
 import AppPages from './pages';

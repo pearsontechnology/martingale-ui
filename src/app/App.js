@@ -10,6 +10,10 @@ import {
   ContainerFluid
 } from 'martingale-ui-components';
 
+import {
+  pageSchemaToReact
+} from 'martingale-page-schema';
+
 import Components from '../components';
 const {
   Nav,
@@ -21,7 +25,35 @@ const {
   IconLogOut
 } = Components;
 
-import Pages from './pages';
+import AppPages from './pages';
+
+const Pages = Object.keys(AppPages).reduce((Pages, key)=>{
+  const page = AppPages[key];
+  const type = typeof(page);
+  if(type==='string'){
+    const layout = JSON.parse(page);
+    return Object.assign(Pages, {[key]: (props)=>pageSchemaToReact({
+          layout,
+          components: Components,
+          props
+        })
+      });
+  }
+  if(type==='object'){
+    const handler = (props)=>pageSchemaToReact({
+          layout: page,
+          components: Components,
+          props
+        });
+    handler.caption = page.caption;
+    handler.path = page.path;
+    handler.paths = page.paths;
+    handler.icon = page.icon;
+    handler.sideNav = page.sideNav;
+    return Object.assign(Pages, {[key]: handler});
+  }
+  return Object.assign(Pages, {[key]: page});
+}, {});
 
 const sideNavItems=Object.keys(Pages).filter((key)=>Pages[key].sideNav).map((key)=>{
   const page = Pages[key];

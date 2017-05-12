@@ -1,9 +1,3 @@
-import Components from '../../../components';
-
-import {
-  pageSchemaToReact
-} from 'martingale-page-schema';
-
 const KONG_ROOT="/api/kong";
 
 const schema = {
@@ -25,52 +19,45 @@ const schema = {
   }
 };
 
-const Page = (props)=>pageSchemaToReact({
-  layout: {
-    $type: 'div',
-    children: {
-      $type: 'HeaderPage',
-      props: {
-        title: {$map: `\`\${params.name} Settings\``}
-      },
-      children: [
-        {
-          $type: 'Panel',
+const layout = {
+  $type: 'div',
+  children: {
+    $type: 'HeaderPage',
+    props: {
+      title: {$map: `\`\${params.name} Settings\``}
+    },
+    children: [
+      {
+        $type: 'Panel',
+        props: {
+          inset: true
+        },
+        children: {
+          $type: 'Provider',
           props: {
-            inset: true
-          },
-          children: {
-            $type: 'Provider',
+            provide: {
+              data: {
+                url: {$map: `params.name?\`${KONG_ROOT}/apis/\${params.name}\`:''`}
+              }
+            },
             props: {
-              provide: {
-                data: {
-                  url: {$map: `params.name?\`${KONG_ROOT}/apis/\${params.name}\`:''`}
-                }
-              },
-              props: {
-                schema,
-                successUrl: '/apis',
-                submitTo: {
-                  method: {$map: 'params.name?"PUT":"POST"'},//'POST',
-                  url: `${KONG_ROOT}/apis`
-                }
-              },
-              Component: {$component: 'KongForm'}
-            }
+              schema,
+              successUrl: '/apis',
+              submitTo: {
+                method: {$map: 'params.name?"PUT":"POST"'},//'POST',
+                url: `${KONG_ROOT}/apis`
+              }
+            },
+            Component: {$component: 'KongForm'}
           }
         }
-      ]
-    }
+      }
+    ]
   },
-  components: Components,
-  props
-});
+  paths: [
+      '/api/:name',
+      '/api'
+    ]
+};
 
-Page.paths = [
-  '/api/:name',
-  '/api'
-];
-Page.icon = 'API';
-Page.caption = 'API Settings';
-
-export default Page;
+export default layout;

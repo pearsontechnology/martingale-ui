@@ -1,13 +1,13 @@
 import Home from './home';
 import KitchenSink from './kitchensink';
-import APIs from './apis';
 import Kube from './kube';
 import Settings from './settings';
+import Kong from './kong';
 
 export default {
   Home,
   KitchenSink,
-  ...APIs,
+  ...Kong,
   ...Kube,
   Settings
 };

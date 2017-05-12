@@ -16,7 +16,7 @@ const layout = {
             props: {
               caption: 'New',
               className: 'btn btn-primary',
-              to: '/api'
+              to: '/kong/api'
             }
           }
         },
@@ -43,11 +43,11 @@ const layout = {
                 {
                   caption: 'Settings',
                   btnStyle: 'primary',
-                  link: `/api/\${name}`
+                  link: `/kong/api/\${name}`
                 },
                 {
                   caption: 'Plugins',
-                  link: `/api/\${name}/plugins`
+                  link: `/kong/api/\${name}/plugins`
                 },
                 {
                   caption: 'Delete',
@@ -61,7 +61,7 @@ const layout = {
       }
     ]
   },
-  path: '/apis',
+  path: '/kong/apis',
   icon: 'API',
   sideNav: true,
   caption: 'API\'s'

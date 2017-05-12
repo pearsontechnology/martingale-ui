@@ -32,14 +32,14 @@ const layout = {
             },
             Component: {$component: 'KongForm'},
             props: {
-              successUrl: {$mapper: `\`/api/\${params.name}/plugin/\${props.pluginType}\``}
+              successUrl: {$mapper: `\`/kong/api/\${params.name}/plugin/\${props.pluginType}\``}
             }
           }
         }
       }
     ]
   },
-  path: '/api/:name/plugin'
+  path: '/kong/api/:name/plugin'
 };
 
 export default layout;

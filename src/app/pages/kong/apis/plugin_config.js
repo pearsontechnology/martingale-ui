@@ -26,7 +26,7 @@ const layout = {
             },
             props: {
               dataRoot: 'config',
-              successUrl: {$map: `\`/api/\${params.name}/plugins\``},
+              successUrl: {$map: `\`/kong/api/\${params.name}/plugins\``},
               submitTo: {
                 method: {$map: 'params.id?"PUT":"POST"'},//'POST',
                 url: {$map: `\`${KONG_ROOT}/apis/\${params.name}/plugins\``},
@@ -43,8 +43,8 @@ const layout = {
     ]
   },
   paths: [
-      '/api/:name/plugin/:pluginName/:id',
-      '/api/:name/plugin/:pluginName'
+      '/kong/api/:name/plugin/:pluginName/:id',
+      '/kong/api/:name/plugin/:pluginName'
     ]
 };
 

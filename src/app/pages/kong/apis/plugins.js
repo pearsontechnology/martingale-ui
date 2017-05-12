@@ -15,7 +15,7 @@ const layout = {
           props: {
             caption: 'New',
             className: 'btn btn-primary',
-            to: {$map: `\`/api/\${params.name}/plugin\``}
+            to: {$map: `\`/kong/api/\${params.name}/plugin\``}
           }
         }
       },
@@ -40,7 +40,7 @@ const layout = {
             actions: [
               {
                 caption: 'Edit',
-                link: {$mapper: `\`/api/\${params.name}/plugin/\${props.name}/\${props.id}\``},
+                link: {$mapper: `\`/kong/api/\${params.name}/plugin/\${props.name}/\${props.id}\``},
                 btnStyle: 'primary'
               },
               {
@@ -54,7 +54,7 @@ const layout = {
       }
     }
   },
-  path: '/api/:name/plugins'
+  path: '/kong/api/:name/plugins'
 };
 
 export default layout;

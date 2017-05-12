@@ -42,7 +42,7 @@ const layout = {
             },
             props: {
               schema,
-              successUrl: '/apis',
+              successUrl: '/kong/apis',
               submitTo: {
                 method: {$map: 'params.name?"PUT":"POST"'},//'POST',
                 url: `${KONG_ROOT}/apis`
@@ -55,8 +55,8 @@ const layout = {
     ]
   },
   paths: [
-      '/api/:name',
-      '/api'
+      '/kong/api/:name',
+      '/kong/api'
     ]
 };
 

@@ -21,6 +21,8 @@ const {
 
 import AppPages from './pages';
 
+console.log(JSON.stringify(AppPages))
+
 const Pages = Object.keys(AppPages)
   .sort((key1, key2)=>{
     const page1 = AppPages[key1];

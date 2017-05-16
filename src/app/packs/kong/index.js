@@ -7,11 +7,14 @@ import KongDashboard from './dashboard';
 //import Upstreams from './upstreams';
 
 export default {
-  KongDashboard,
-  ...Cluster,
-  ...APIs,
-  ...Consumers,
-  ...Certificates,
-  ...SNIs,
-  //...Upstreams
+  name: 'Kong',
+  pages: {
+    KongDashboard,
+    ...Cluster,
+    ...APIs,
+    ...Consumers,
+    ...Certificates,
+    ...SNIs,
+    //...Upstreams
+  }
 };

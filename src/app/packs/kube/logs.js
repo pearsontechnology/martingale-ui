@@ -26,7 +26,7 @@ const layout = {
       }
     }
   },
-  path: '/namespace/:name/pod/:id/logs'
+  path: '/kube/namespace/:name/pod/:id/logs'
 };
 
 export default layout;

@@ -32,12 +32,12 @@ const layout = {
         props: {
           actions: [
             {
-              link: {$mapper: `\`/namespace/\${params.name}/pod/\${props.name}/logs\``},
+              link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}/logs\``},
               caption: 'Logs',
               btnStyle: 'primary'
             },
             {
-              link: {$mapper: `\`/namespace/\${params.name}/pod/\${props.name}\``},
+              link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}\``},
               caption: 'Details',
               btnStyle: 'default'
             },
@@ -51,7 +51,7 @@ const layout = {
       }
     }
   },
-  path: '/namespace/:name/pods'
+  path: '/kube/namespace/:name/pods'
 };
 
 export default layout;

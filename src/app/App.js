@@ -19,65 +19,53 @@ const {
   Nav,
 } = Components;
 
-import AppPages from './pages';
+import Martingale from './packs/martingale';
+import Kong from './packs/kong';
+import Kube from './packs/kube';
+const Packs = [
+  Kube,
+  Kong,
+  Martingale
+];
 
-console.log(JSON.stringify(AppPages))
-
-const Pages = Object.keys(AppPages)
-  .sort((key1, key2)=>{
-    const page1 = AppPages[key1];
-    const page2 = AppPages[key2];
-    const caption1 = page1.caption || key1;
-    const caption2 = page2.caption || key2;
-    if(caption1==='Settings'){
-      return 1;
-    }
-    if(caption2==='Settings'){
-      return -1;
-    }
-    if(page1.isDashboard && page2.isDashboard){
-      return caption1.localeCompare(caption2);
-    }
-    if(page1.isDashboard){
-      return -1;
-    }
-    if(page2.isDashboard){
-      return 1;
-    }
-    return caption1.localeCompare(caption2);
+const Pages = Packs
+  .map((pack)=>{
+    const {
+      //name: packName,
+      path: packPath = '',
+      pages
+    } = pack;
+    const pageKeys = Array.isArray(pages)?pages:Object.keys(pages);
+    return pageKeys.map((key)=>{
+      const {
+        path,
+        paths,
+        icon,
+        sideNav=false,
+        caption,
+        ...layout
+      } = pages[key];
+      return {
+        path: path?packPath+path:path,
+        paths: paths?paths.map((path)=>packPath+path):paths,
+        icon,
+        sideNav,
+        caption,
+        Page: (props)=>pageSchemaToReact({
+          layout,
+          components: Components,
+          props
+        })
+      };
+    });
   })
-  .reduce((Pages, key)=>{
-    const page = AppPages[key];
-    const type = typeof(page);
-    if(type==='string'){
-      const layout = JSON.parse(page);
-      return Object.assign(Pages, {[key]: (props)=>pageSchemaToReact({
-            layout,
-            components: Components,
-            props
-          })
-        });
-    }
-    if(type==='object'){
-      const handler = (props)=>pageSchemaToReact({
-            layout: page,
-            components: Components,
-            props
-          });
-      handler.caption = page.caption;
-      handler.path = page.path;
-      handler.paths = page.paths;
-      handler.icon = page.icon;
-      handler.sideNav = page.sideNav;
-      return Object.assign(Pages, {[key]: handler});
-    }
-    return Object.assign(Pages, {[key]: page});
-  }, {});
+  .reduce((pages, packPages)=>{
+    return pages.concat(...packPages);
+  }, []);
 
-const sideNavItems=Object.keys(Pages).filter((key)=>Pages[key].sideNav).map((key)=>{
-  const page = Pages[key];
-  const caption = page.caption || key;
-  const linkTo = page.path;
+const sideNavItems=Pages.filter((page)=>page.sideNav).map((page)=>{
+  const caption = page.caption || page.path;
+  const linkTo = page.path || page.paths[0];
   const icon = page.icon || 'Unknown';
   const Icon = Components[`Icon${icon}`] || Components.IconUnknown;
   return {
@@ -147,22 +135,22 @@ const NoMatch = ({ location }) => (
 );
 
 const App = ()=>{
-  const routes = Object.keys(Pages).map((route)=>{
-    const Page = Pages[route];
+  const routes = Pages.map((page)=>{
     const {
       path,
-      paths
-    } = Page;
+      paths,
+      Page
+    } = page;
     if(Array.isArray(paths)){
       return paths.map((path)=>{
-        return <Route key={route} exact path={path} render={(match)=>{
+        return <Route key={path} exact path={path} render={(match)=>{
           const params = (match.match||{}).params;
           const page = React.createElement(Page, params);
           return page;
         }} />
       });
     }
-    return <Route key={route} exact path={path} render={(match)=>{
+    return <Route key={path} exact path={path} render={(match)=>{
       const params = (match.match||{}).params;
       const page = React.createElement(Page, params);
       return page;

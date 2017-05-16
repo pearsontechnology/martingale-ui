@@ -34,7 +34,7 @@ const layout = {
             Component: {$component: 'ActionTable'},
             props: {
               actions: {
-                link: `/namespace/\${name}/pods`,
+                link: `/kube/namespace/\${name}/pods`,
                 caption: 'View Pods',
                 btnStyle: 'primary'
               }
@@ -44,7 +44,7 @@ const layout = {
       }
     ]
   },
-  path: '/kube',
+  path: '/kube/',
   icon: 'Dashboard',
   sideNav: true,
   caption: 'Kube Dashboard',

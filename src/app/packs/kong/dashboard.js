@@ -91,7 +91,7 @@ const layout = {
       }
     ]
   },
-  path: '/kong',
+  path: '/kong/',
   icon: 'Dashboard',
   sideNav: true,
   caption: 'Kong Dashboard',

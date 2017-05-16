@@ -19,7 +19,7 @@ const layout = {
       }
     }
   },
-  path: '/namespace/:name/pod/:id'
+  path: '/kube/namespace/:name/pod/:id'
 };
 
 export default layout;

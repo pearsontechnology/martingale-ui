@@ -8,6 +8,6 @@ export default {
   pages: {
     Home,
     KitchenSink,
-    Settings
+    //Settings
   }
 };

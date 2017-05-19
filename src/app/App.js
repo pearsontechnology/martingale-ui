@@ -38,6 +38,7 @@ const Pages = Packs
     const pageKeys = Array.isArray(pages)?pages:Object.keys(pages);
     return pageKeys.map((key)=>{
       const {
+        pack: packName,
         path,
         paths,
         icon,
@@ -63,6 +64,7 @@ const Pages = Packs
     return pages.concat(...packPages);
   }, []);
 
+/*
 const sideNavItems=Pages.filter((page)=>page.sideNav).map((page)=>{
   const caption = page.caption || page.path;
   const linkTo = page.path || page.paths[0];
@@ -74,6 +76,45 @@ const sideNavItems=Pages.filter((page)=>page.sideNav).map((page)=>{
     linkTo
   };
 });
+*/
+
+const getPages = (rawPages)=>{
+  if(Array.isArray(rawPages)){
+    return rawPages;
+  }
+  return Object.keys(rawPages).map((key)=>rawPages[key]);
+};
+
+const sideNavItems = Packs.map((pack)=>{
+  const {
+    name,
+    //path = '',
+    icon: packIcon,
+  } = pack;
+  const pages = getPages(pack.pages).filter((page)=>page.sideNav);
+
+  if(!packIcon){
+    const dashboards = getPages(pack.pages).filter((page)=>page.isDashboard);
+    if(dashboards.length > 0){
+      const dashboard = dashboards[0];
+      const icon = dashboard.icon || 'Unknown';
+      const Icon = typeof(icon)==='function'?icon:Components[`Icon${icon}`] || Components.IconUnknown;
+      return {
+        caption: name,
+        Icon,
+        pages: pages.filter((page)=>page.sideNav)
+      };
+    }
+  }
+
+  const PackIcon = typeof(packIcon)==='function'?packIcon:Components[`Icon${packIcon}`] || Components.IconUnknown;
+  return {
+    Icon: PackIcon,
+    caption: name,
+    pages: pages.filter((page)=>page.sideNav)
+  }
+});
+
 
 const topNavItems = [];
 /*

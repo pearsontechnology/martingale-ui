@@ -1,14 +1,10 @@
-import Pods from './pods';
-import Pod from './pod';
-import Logs from './logs';
 import KubeDashboard from './dashboard';
+import Namespaces from './namespaces';
 
 export default {
   name: 'Kube',
   pages: {
     KubeDashboard,
-    Pods,
-    Pod,
-    Logs
+    ...Namespaces
   }
 };

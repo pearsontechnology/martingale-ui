@@ -1,19 +1,37 @@
 import React from 'react';
-import SideNavLink from './sidenavlink';
+import SideNavGroup from './sidenavgroup';
 
-const SideNav = ({items})=>{
-  const sideNavLinks = items.map((info, index)=>{
+class SideNav extends React.Component{
+  constructor(){
+    super();
+    this.state = {};
+  }
+
+  expandGroup(index){
+    if(this.state.expanded === index){
+      return this.setState({expanded: -1});
+    }
+    this.setState({expanded: index});
+  }
+
+  render(){
     const {
-      linkTo: to,
-      ...props
-    } = info;
-    return <SideNavLink to={to} {...props} key={index} />;
-  });
-  return (
-    <ul className="nav navbar-nav side-nav">
-      {sideNavLinks}
-    </ul>
-  );
-};
+      items
+    } = this.props;
+    const sideNavGroups = items.map((info, index)=>{
+      const {
+        linkTo: to,
+        ...props
+      } = info;
+      props.open = this.state.expanded === index;
+      return <SideNavGroup to={to} {...props} key={index} onClick={()=>this.expandGroup(index)} />;
+    });
+    return (
+      <ul className="nav navbar-nav side-nav">
+        {sideNavGroups}
+      </ul>
+    );
+  }
+}
 
 export default SideNav;

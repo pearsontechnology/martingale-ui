@@ -1,3 +1,26 @@
+import React from 'react';
+import Components from 'martingale-ui-components';
+
+const Icons = Object.keys(Components)
+  .filter(name=>/^Icon/.exec(name))
+  .map((name)=>{
+    const C = Components[name];
+    return {
+      $type: 'div',
+      props: {
+        style: {
+          display: 'inline-block',
+          width: '120px',
+          textAlign: 'center'
+        }
+      },
+      children: [
+        <C size={64} />,
+        <p>{name}</p>
+      ]
+    };
+  });
+
 const tableData = [
     {name: 'Test User', status: 'Active', level: 'Admin'},
     {name: 'Another User', status: 'Disabled', level: 'Read'}
@@ -609,11 +632,21 @@ const layout = {
           }
         }
       ]
+    },
+    {
+      $type: 'PageHeader',
+      props: {
+        title: 'Icons'
+      }
+    },
+    {
+      $type: 'Panel',
+      children: Icons
     }
   ],
   path: '/kitchensink',
   icon: 'Kitchensink',
-  //sideNav: true,
+  sideNav: true,
   caption: 'Kitchen Sink'
 };
 

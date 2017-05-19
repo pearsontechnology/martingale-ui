@@ -12,11 +12,11 @@ const layout = {
       "children": [
         {
           "$type": "p",
-          "children": "Welcome to Martingale.  Martingale is a generic dashboarding/management platform built in Rect on top of Kong."
+          "children": "Welcome to Martingale.  Martingale is a generic dashboarding/management platform built in Rect on top of a bring your own API Gateway mentality."
         },
         {
           "$type": "p",
-          "children": "Hopefully you find it as useful as we do."
+          "children": "What this means is that there is no API, server, or backend for Martingale.  You setup a static asset delivery for Martingale (typically a webserver), setup the API's in the API Gateway of your choice, and provide Martingale access to those API's.  From there its just install/create view packs and watch Martingale provide the UI."
         }
       ]
     }

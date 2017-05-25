@@ -1,6 +1,6 @@
 import Home from './home';
 import KitchenSink from './kitchensink';
-import Settings from './settings';
+//import Settings from './settings';
 
 export default {
   name: 'Martingale',

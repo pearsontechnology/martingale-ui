@@ -7,7 +7,6 @@ const $mapper=`props.map((ds)=>{
   const md = ds.metadata;
   const spec = ds.spec;
   const status = ds.status;
-  console.log(ds)
   return {
     name: md.name,
     namespace: md.namespace,

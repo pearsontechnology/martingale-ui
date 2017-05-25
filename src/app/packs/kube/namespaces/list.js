@@ -29,6 +29,11 @@ const actions = [
     link: `/kube/namespace/\${name}/daemonsets`,
     caption: 'Daemonsets',
     btnStyle: 'default'
+  },
+  {
+    link: `/kube/namespace/\${name}/resourcequotas`,
+    caption: 'Resource Quotas',
+    btnStyle: 'default'
   }
 ];
 

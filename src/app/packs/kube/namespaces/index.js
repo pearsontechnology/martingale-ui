@@ -5,6 +5,7 @@ import Secrets from './secrets';
 import ThirdPartyResources from './thirdpartyresources';
 import Daemonsets from './daemonsets';
 import Replicasets from './replicasets';
+import ResourceQuotas from './quotas';
 
 export default {
   Listing,
@@ -13,5 +14,6 @@ export default {
   ...Secrets,
   ...ThirdPartyResources,
   ...Daemonsets,
-  ...Replicasets
+  ...Replicasets,
+  ...ResourceQuotas
 };

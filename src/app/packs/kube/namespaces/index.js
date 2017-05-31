@@ -6,6 +6,7 @@ import ThirdPartyResources from './thirdpartyresources';
 import Daemonsets from './daemonsets';
 import Replicasets from './replicasets';
 import ResourceQuotas from './quotas';
+import Deployments from './deployments';
 
 export default {
   Listing,
@@ -15,5 +16,6 @@ export default {
   ...ThirdPartyResources,
   ...Daemonsets,
   ...Replicasets,
-  ...ResourceQuotas
+  ...ResourceQuotas,
+  ...Deployments
 };

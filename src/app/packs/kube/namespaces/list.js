@@ -34,6 +34,11 @@ const actions = [
     link: `/kube/namespace/\${name}/resourcequotas`,
     caption: 'Resource Quotas',
     btnStyle: 'default'
+  },
+  {
+    link: `/kube/namespace/\${name}/deployments`,
+    caption: 'Deployments',
+    btnStyle: 'default'
   }
 ];
 

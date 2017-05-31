@@ -18,6 +18,7 @@ const layout = {
               const running = getObjectValue('status.containerStatuses[0].state.running', pod);
               return {
                 name: getObjectValue('metadata.name', pod),
+                node: getObjectValue('spec.nodeName', pod),
                 namespace: getObjectValue('metadata.namespace', pod),
                 created: getObjectValue('metadata.creationTimestamp', pod),
                 phase: getObjectValue('status.phase', pod),
@@ -25,7 +26,8 @@ const layout = {
                 podIp: getObjectValue('status.podIP', pod),
                 started: getObjectValue('startedAt', running)
               };
-            })`}
+            })`},
+            refresh: 5000
           }
         },
         Component: {$component: 'ActionTable'},

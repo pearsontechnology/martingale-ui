@@ -36,7 +36,8 @@ const layout = {
             data: {
               url: {$map: `\`${KUBE_ROOT}${ENDPOINT}\``},
               root: 'items',
-              mapper: {$mapper}
+              mapper: {$mapper},
+              refresh: 5000
             }
           },
           Component: {$component: 'ActionTable'},

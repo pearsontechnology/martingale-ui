@@ -19,7 +19,8 @@ const layout = {
               }catch(e){
                 return l;
               }
-            })`}
+            })`},
+            refresh: 5000
           }
         },
         Component: {$component: 'Table'}

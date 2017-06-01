@@ -23,6 +23,7 @@ const layout = {
                 created: getObjectValue('metadata.creationTimestamp', pod),
                 phase: getObjectValue('status.phase', pod),
                 status: running?getObjectValue('status.phase', pod):getObjectValue('status.containerStatuses[0].state.waiting.reason', pod, 'unknown'),
+                restartCount: getObjectValue('status.containerStatuses[0].restartCount', pod, '0'),
                 podIp: getObjectValue('status.podIP', pod),
                 started: getObjectValue('startedAt', running)
               };

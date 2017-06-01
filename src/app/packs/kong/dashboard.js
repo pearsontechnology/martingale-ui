@@ -29,6 +29,7 @@ const layout = {
                   data: {
                     url: `${KONG_ROOT}/status`,
                     mapper:{$mapper: 'props.server?[props.server]:null'},
+                    refresh: 5000
                   }
                 },
                 Component: {$component: 'BarChart'},
@@ -54,6 +55,7 @@ const layout = {
                   data: {
                     url: `${KONG_ROOT}/status`,
                     mapper:{$mapper: 'props.server?[props.server]:null'},
+                    refresh: 5000
                   }
                 },
                 Component: {$component: 'BarChart'},
@@ -78,6 +80,7 @@ const layout = {
                   data: {
                     url: `${KONG_ROOT}`,
                     mapper:{$mapper: 'props.timers?[props.timers]:null'},
+                    refresh: 5000
                   }
                 },
                 Component: {$component: 'BarChart'},

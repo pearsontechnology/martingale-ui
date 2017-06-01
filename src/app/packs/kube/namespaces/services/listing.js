@@ -1,28 +1,20 @@
 const KUBE_ROOT="/api/kube";
-const TYPE='Deployments';
+const TYPE='Services';
 // eslint-disable-next-line
-const ENDPOINT='/apis/extensions/v1beta1/namespaces/${params.namespace}/deployments';
-const path='/kube/namespace/:namespace/deployments';
-const $mapper=`props.map((ds)=>{
-  const md = ds.metadata;
+const ENDPOINT='/api/v1/namespaces/${params.namespace}/services';
+const path='/kube/namespace/:namespace/services';
+const $mapper=`props.map((pod)=>{
   return {
-    name: md.name,
-    namespace: md.namespace,
-    created: md.creationTimestamp,
-    labels: md.labels
+    name: getObjectValue('metadata.name', pod),
+    namespace: getObjectValue('metadata.namespace', pod),
+    created: getObjectValue('metadata.creationTimestamp', pod)
   };
 })`;
-
 const actions = [
   {
-    link: {$mapper: `\`/kube/namespace/\${params.namespace}/deployment/\${props.name}\``},
+    link: {$mapper: `\`/kube/namespace/\${params.namespace}/service/\${props.name}\``},
     caption: 'Details',
     btnStyle: 'primary'
-  },
-  {
-    delete: {$mapper: `\`${KUBE_ROOT}/apis/extensions/v1beta1/namespaces/\${params.namespace}/deployments/\${props.name}\``},
-    caption: 'Delete',
-    message: `Are you sure you want to delete \${name}?`
   }
 ];
 

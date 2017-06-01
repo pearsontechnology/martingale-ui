@@ -39,6 +39,11 @@ const actions = [
     link: `/kube/namespace/\${name}/deployments`,
     caption: 'Deployments',
     btnStyle: 'default'
+  },
+  {
+    link: `/kube/namespace/\${name}/services`,
+    caption: 'Services',
+    btnStyle: 'default'
   }
 ];
 

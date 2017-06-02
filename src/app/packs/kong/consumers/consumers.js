@@ -38,6 +38,10 @@ const layout = {
               caption: 'Delete',
               delete: `${KONG_ROOT}/consumers/\${id}`,
               message: `Are you sure you want to delete "\${username||custom_id}"?`
+            },
+            {
+              caption: 'Basic Auth Accounts',
+              link: `/kong/consumers/\${username||id}/basic-auth-accounts`
             }
           ]
         }

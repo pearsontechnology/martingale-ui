@@ -3,7 +3,7 @@ const KONG_ROOT="/api/kong";
 const schema = {
   fields: {
     username: {type: 'string', required: true},
-    password: {type: 'string', required: true}
+    secret: {type: 'string', required: true}
   }
 };
 
@@ -12,7 +12,7 @@ const layout = {
   children: {
     $type: 'HeaderPage',
     props: {
-      title: {$map: `params.name?\`\${params.id} - Basic Auth - \${params.name}\`:\`\${params.id} - Basic Auth\``},
+      title: {$map: `params.name?\`\${params.id} - HMAC Auth - \${params.name}\`:\`\${params.id} - HMAC Auth\``},
     },
     children: [
       {
@@ -25,16 +25,16 @@ const layout = {
           props: {
             provide: {
               data: {
-                url: {$map: `params.name?\`${KONG_ROOT}/consumers/\${params.id}/basic-auth/\${params.name}\`:''`},
+                url: {$map: `params.name?\`${KONG_ROOT}/consumers/\${params.id}/hmac-auth/\${params.name}\`:''`},
                 mapper: {$mapper: '{username: props.username, id: props.id, consumer_id: props.consumer_id, created_at: props.created_at}'}
               }
             },
             props: {
               schema,
-              successUrl: {$map: '`/kong/consumers/${params.id}/basic-auth-accounts`'},
+              successUrl: {$map: '`/kong/consumers/${params.id}/hmac-auth-accounts`'},
               submitTo: {
                 method: {$map: 'params.name?"PUT":"POST"'},
-                url: {$map: `\`${KONG_ROOT}/consumers/\${params.id}/basic-auth\``}
+                url: {$map: `\`${KONG_ROOT}/consumers/\${params.id}/hmac-auth\``}
               }
             },
             Component: {$component: 'KongForm'}
@@ -44,8 +44,8 @@ const layout = {
     ]
   },
   paths: [
-      '/kong/consumer/:id/basic-auth/:name',
-      '/kong/consumer/:id/basic-auth'
+      '/kong/consumer/:id/hmac-auth/:name',
+      '/kong/consumer/:id/hmac-auth'
     ]
 };
 

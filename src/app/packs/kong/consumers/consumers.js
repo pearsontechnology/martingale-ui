@@ -40,8 +40,28 @@ const layout = {
               message: `Are you sure you want to delete "\${username||custom_id}"?`
             },
             {
-              caption: 'Basic Auth Accounts',
+              caption: 'Basic Auth',
               link: `/kong/consumers/\${username||id}/basic-auth-accounts`
+            },
+            {
+              caption: 'OAuth2',
+              link: `/kong/consumers/\${username||id}/oauth2-accounts`
+            },
+            {
+              caption: 'HMAC',
+              link: `/kong/consumers/\${username||id}/hmac-auth-accounts`
+            },
+            {
+              caption: 'Key',
+              link: `/kong/consumers/\${username||id}/key-auth-accounts`
+            },
+            {
+              caption: 'JWT',
+              link: `/kong/consumers/\${username||id}/jwt-accounts`
+            },
+            {
+              caption: 'ACL\'s',
+              link: `/kong/consumers/\${username||id}/acl-auth-accounts`
             }
           ]
         }

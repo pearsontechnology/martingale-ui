@@ -12,7 +12,7 @@ const layout = {
       props: {
         provide: {
           data: {
-            url: {$map: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${params.id}/log?sinceSeconds=${5*60}\``},
+            url: {$map: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${params.id}/log?sinceSeconds=${60*60}\``},
             mapper: {$mapper: `props.split("\\n").map((l)=>{
               try{
                 return JSON.parse(l);

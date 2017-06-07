@@ -22,7 +22,8 @@ const layout = {
       props: {
         provide: {
           data: {
-            url: `${KONG_ROOT}/certificates`
+            url: `${KONG_ROOT}/certificates`,
+            root: 'data'
           }
         },
         Component: {$component: 'ActionTable'},

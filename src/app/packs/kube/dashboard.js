@@ -10,7 +10,7 @@ const section = ({title, source, mapper: $mapper})=>{
     $type: 'Panel',
     props: {
       title,
-      maxHeight: '400px'
+      maxHeight: 400
     },
     children: {
       $type: 'Provider',

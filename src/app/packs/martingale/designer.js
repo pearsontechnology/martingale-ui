@@ -3,10 +3,13 @@ import {
   pageSchemaToReact
 } from 'martingale-page-schema';
 import Components from '../../../components';
+const COMPONENT_NAMES = Object.keys(Components);
 const {
   HeaderPage,
   PageHeader,
-  Panel
+  Panel,
+  Row,
+  Col
 } = Components;
 
 const SAMPLE_SOURCE=`{
@@ -23,6 +26,16 @@ const SAMPLE_SOURCE=`{
   }
 }`;
 
+const getComponentDescription = (componentName)=>{
+  const component = Components[componentName];
+  const propNames = Object.keys(component.propTypes||{});
+  const props = <ul>{propNames.map(n=><li key={n}>{n}</li>)}</ul>
+  return [
+    <dt key={componentName}>{componentName}</dt>,
+    <dd>{props}</dd>
+  ];
+};
+
 class Editor extends React.Component{
   sourceChanged(e){
     e.preventDefault();
@@ -33,7 +46,7 @@ class Editor extends React.Component{
   render(){
     const style={
       width: '100%',
-      minHeight: '100px'
+      minHeight: '200px'
     };
     const {
       source
@@ -90,15 +103,23 @@ class Designer extends React.Component{
               components: Components,
               props: this.state.params
             });
+    const components = <dl>{COMPONENT_NAMES.sort().map(getComponentDescription)}</dl>
     return (
       <div>
         <HeaderPage title="Pack Designer">
-          <Panel header="Parameters" inset={true}>
-            <Editor source={JSON.stringify(this.state.params, null, 2)} onChange={this.parametersChanged.bind(this)}/>
-          </Panel>
-          <Panel header="Source" inset={true}>
-            <Editor source={this.state.source} onChange={this.editorChanged.bind(this)}/>
-          </Panel>
+          <Row>
+            <Col md={10}>
+              <Panel header="Parameters" inset={true}>
+                <Editor source={JSON.stringify(this.state.params, null, 2)} onChange={this.parametersChanged.bind(this)}/>
+              </Panel>
+              <Panel header="Source" inset={true}>
+                <Editor source={this.state.source} onChange={this.editorChanged.bind(this)}/>
+              </Panel>
+            </Col>
+            <Panel header="Available Components" inset={true} md={2} maxHeight={500}>
+              {components}
+            </Panel>
+          </Row>
         </HeaderPage>
         <PageHeader>Preview</PageHeader>
         {preview}

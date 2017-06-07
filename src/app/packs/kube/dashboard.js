@@ -1,8 +1,9 @@
-const KUBE_ROOT="/api/kube";
 import React from 'react';
 import {
   MakeIcon
 } from 'martingale-ui-components';
+
+const KUBE_ROOT="/api/kube";
 
 const section = ({title, source, mapper: $mapper})=>{
   return {

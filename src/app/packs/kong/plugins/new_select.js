@@ -49,6 +49,7 @@ const layout = {
             },
             Component: {$component: 'KongForm'},
             props: {
+              // eslint-disable-next-line
               successUrl: {$mapper: 'props.api!==\'[global]\'?`/kong/api/${props.api}/plugin/${props.pluginType}`:`/kong/plugin/${props.pluginType}`'}
             }
           }

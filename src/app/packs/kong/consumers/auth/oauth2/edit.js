@@ -33,6 +33,7 @@ const layout = {
             },
             props: {
               schema,
+              // eslint-disable-next-line
               successUrl: {$map: '`/kong/consumers/${params.id}/oauth2-accounts`'},
               submitTo: {
                 method: {$map: 'params.name?"PUT":"POST"'},

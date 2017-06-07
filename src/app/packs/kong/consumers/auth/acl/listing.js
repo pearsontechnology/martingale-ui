@@ -33,6 +33,7 @@ const layout = {
         props: {
           caption: 'New',
           className: 'btn btn-primary',
+          // eslint-disable-next-line
           to: {$mapper: '`/kong/consumer/${params.consumer}/acl-auth`'}
         }
       }

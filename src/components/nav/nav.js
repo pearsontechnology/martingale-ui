@@ -13,7 +13,7 @@ import TopNav from './topnav';
 
 const Nav =({sideNavItems = [], topNavItems = []})=>{
   return (
-    <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="navbar-header">
           <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
               <span className="sr-only">Toggle navigation</span>

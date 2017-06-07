@@ -11,7 +11,7 @@ const layout = {
   children: {
     $type: 'HeaderPage',
     props: {
-      title: {$map: `params.name?\`\${params.id} - ACL\'s\`:\`\${params.id} - ACL\'s\``},
+      title: {$map: `params.name?\`\${params.id} - ACL's\`:\`\${params.id} - ACL's\``},
     },
     children: [
       {
@@ -30,6 +30,7 @@ const layout = {
             },
             props: {
               schema,
+              // eslint-disable-next-line
               successUrl: {$map: '`/kong/consumers/${params.id}/acl-auth-accounts`'},
               submitTo: {
                 method: {$map: 'params.name?"PUT":"POST"'},

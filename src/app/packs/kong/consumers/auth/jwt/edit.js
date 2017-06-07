@@ -31,6 +31,7 @@ const layout = {
             },
             props: {
               schema,
+              // eslint-disable-next-line
               successUrl: {$map: '`/kong/consumers/${params.id}/jwt-accounts`'},
               submitTo: {
                 method: {$map: 'params.name?"PUT":"POST"'},

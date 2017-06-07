@@ -4,6 +4,9 @@ import TopNavDivider from './topnavdivider';
 import LiDropdown from './lidropdown';
 
 const TopNavList=({Icon, caption, items, type})=>{
+  const linkStyles = {
+    cursor: 'pointer'
+  };
   const className = type?`${type}-dropdown`:'';
   const topNavItems = items.map((info, index)=>{
     const {
@@ -18,7 +21,7 @@ const TopNavList=({Icon, caption, items, type})=>{
   });
   return (
     <LiDropdown>
-      <a href="#" className={`dropdown-toggle`} data-toggle="dropdown"><Icon /> {caption} <b className="caret"></b></a>
+      <a style={linkStyles} className={`dropdown-toggle`} data-toggle="dropdown"><Icon /> {caption} <b className="caret"></b></a>
       <ul className={`dropdown-menu ${className}`}>
         {topNavItems}
       </ul>

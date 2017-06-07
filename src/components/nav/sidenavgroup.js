@@ -33,9 +33,12 @@ class SideNavGroup extends React.Component{
     if(this.props.pages.length===1){
       return this.renderSubLink(this.props.pages[0]);
     }
+    const linkStyles = {
+      cursor: 'pointer'
+    };
     return (
         <li className={className}>
-          <a href='#' onClick={this.handleClick.bind(this)}><Icon size={64} /><br />{caption}</a>
+          <a style={linkStyles} onClick={this.handleClick.bind(this)}><Icon size={64} /><br />{caption}</a>
           <div className={collapseClass}>
             <ul className="nav navbar-nav sideNavSubList">
               {this.renderSubLinks()}

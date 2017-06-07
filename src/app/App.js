@@ -1,3 +1,9 @@
+import {
+  Martingale,
+  Kong,
+  Kube
+} from './packs';
+
 import React from 'react';
 
 import {
@@ -19,9 +25,6 @@ const {
   Nav,
 } = Components;
 
-import Martingale from './packs/martingale';
-import Kong from './packs/kong';
-import Kube from './packs/kube';
 const Packs = [
   Kube,
   Kong,

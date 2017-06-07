@@ -9,6 +9,20 @@ const {
   Panel
 } = Components;
 
+const SAMPLE_SOURCE=`{
+  $type: 'HeaderPage',
+  props: {
+    title: 'Sample page'
+  },
+  children: {
+    $type: 'Panel',
+    props: {
+      inset: true
+    },
+    children: 'Hello World!'
+  }
+}`;
+
 class Editor extends React.Component{
   sourceChanged(e){
     e.preventDefault();
@@ -31,10 +45,10 @@ class Editor extends React.Component{
 class Designer extends React.Component{
   constructor(){
     super();
-    this.state = {source: `{
-  $type: 'Panel',
-  children: 'Hello World!'
-}`, params: {}};
+    this.state = {
+      source: SAMPLE_SOURCE,
+      params: {}
+    };
   }
 
   editorChanged(source){

@@ -40,6 +40,7 @@ const Pages = Packs
     } = pack;
     const pageKeys = Array.isArray(pages)?pages:Object.keys(pages);
     return pageKeys.map((key)=>{
+      const page = pages[key];
       const {
         pack: packName,
         path,
@@ -48,18 +49,19 @@ const Pages = Packs
         sideNav=false,
         caption,
         ...layout
-      } = pages[key];
+      } = page;
+      const Page = typeof(page)==='function'?page:(props)=>pageSchemaToReact({
+                layout,
+                components: Components,
+                props
+              });
       return {
         path: path?packPath+path:path,
         paths: paths?paths.map((path)=>packPath+path):paths,
         icon,
         sideNav,
         caption,
-        Page: (props)=>pageSchemaToReact({
-          layout,
-          components: Components,
-          props
-        })
+        Page
       };
     });
   })

@@ -12,6 +12,7 @@ const changelog = [
 ];
 
 const outstandingTasks = [
+  'Settings page',
   'Multiple "instances" of packs each with own configuration',
   'Customization of pack captions in sidebar',
   'Full pack isolation, allow duplicate names without collision',

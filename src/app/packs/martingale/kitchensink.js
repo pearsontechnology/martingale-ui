@@ -15,8 +15,8 @@ const Icons = Object.keys(Components)
         }
       },
       children: [
-        <C size={64} />,
-        <p>{name}</p>
+        <C size={64} key={name} />,
+        <p key={`${name}-title`}>{name}</p>
       ]
     };
   });

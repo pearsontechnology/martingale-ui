@@ -72,11 +72,9 @@ class Editor extends React.Component{
     } = this.props;
     return (
       <Row>
-        <Col md={10}>
-          <Panel inset={true}>
-            <Form schema={FORM_SCHEMA} uiSchema={UI_SCHEMA} data={data} onChange={onChange} />
-          </Panel>
-        </Col>
+        <Panel md={10} inset={true}>
+          <Form schema={FORM_SCHEMA} uiSchema={UI_SCHEMA} data={data} onChange={onChange} />
+        </Panel>
         <Panel header="Available Components" inset={true} md={2} maxHeight={500}>
           {components}
         </Panel>
@@ -162,7 +160,10 @@ class Preview extends React.Component{
     return (
       <div>
         <Panel inset={true}>
-          <div><input className="form-control" ref={(editor)=>this.editor=editor} defaultValue={this.state.path} /></div>
+          <div className="form-group">
+            <label>Test URL:</label>
+            <input className="form-control" ref={(editor)=>this.editor=editor} defaultValue={this.state.path} />
+          </div>
           <Button className="btn-primary" onClick={this.updateView.bind(this)}>Update</Button>
         </Panel>
         {preview}
@@ -200,7 +201,7 @@ class Designer extends React.Component{
     } = this.state;
     const editing = mode === 'edit';
     const actionCaption = editing?'Preview':'Edit';
-    const titlebar = <span>Pack Designer <Button onClick={this.switchMode.bind(this)}>{actionCaption}</Button></span>;
+    const titlebar = <span>Pack Page Designer <Button onClick={this.switchMode.bind(this)}>{actionCaption}</Button></span>;
     const view = editing?<Editor onChange={this.formUpdated.bind(this)} {...options} />:<Preview {...options} />;
     return (
       <div>

@@ -41,7 +41,7 @@ const makeChangelogItem = (entry)=>{
 const layout = {
   "$type": "HeaderPage",
   "props": {
-    "title": `Martingale v${process.env.REACT_APP_VERSION}`
+    "title": `Martingale v${process.env.REACT_APP_VERSION} - ${process.env.NODE_ENV}`
   },
   "children": [
     {

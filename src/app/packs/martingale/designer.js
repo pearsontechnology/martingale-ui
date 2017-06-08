@@ -10,7 +10,6 @@ const {
   HeaderPage,
   Panel,
   Row,
-  Col,
   Form,
   Button,
   Alert

@@ -26,7 +26,7 @@
     "watch-css": "nodemon --delay 1 -e '.less' -x './compile-less'",
     "start-js": "REACT_APP_VERSION=$(node -pe 'require(\"./package.json\").version') react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "REACT_APP_VERSION=${REACT_APP_VERSION:$(node -pe 'require(\"./package.json\").version')} yarn build-css && react-scripts build",
+    "build": "yarn build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

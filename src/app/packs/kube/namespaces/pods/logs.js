@@ -17,7 +17,7 @@ const layout = {
               try{
                 return JSON.parse(l);
               }catch(e){
-                return l;
+                return {message: l};
               }
             })`},
             refresh: 5000

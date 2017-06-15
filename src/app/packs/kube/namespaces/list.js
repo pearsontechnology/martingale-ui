@@ -1,49 +1,44 @@
 const KUBE_ROOT="/api/kube/api";
+
 const actions = [
   {
     link: `/kube/namespace/\${name}/pods`,
     caption: 'Pods',
-    btnStyle: 'primary'
-  },
-  {
-    link: `/kube/namespace/\${name}/ingresses`,
-    caption: 'Ingresses',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/secrets`,
-    caption: 'Secrets',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/thirdpartyresources`,
-    caption: 'Third Party Resources',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/replicasets`,
-    caption: 'Replicasets',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/daemonsets`,
-    caption: 'Daemonsets',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/resourcequotas`,
-    caption: 'Resource Quotas',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/deployments`,
-    caption: 'Deployments',
-    btnStyle: 'default'
-  },
-  {
-    link: `/kube/namespace/\${name}/services`,
-    caption: 'Services',
-    btnStyle: 'default'
+    btnStyle: 'primary',
+    items: [
+      {
+        link: `/kube/namespace/\${name}/ingresses`,
+        caption: 'Ingresses'
+      },
+      {
+        link: `/kube/namespace/\${name}/secrets`,
+        caption: 'Secrets'
+      },
+      {
+        link: `/kube/namespace/\${name}/thirdpartyresources`,
+        caption: 'Third Party Resources'
+      },
+      {
+        link: `/kube/namespace/\${name}/replicasets`,
+        caption: 'Replicasets'
+      },
+      {
+        link: `/kube/namespace/\${name}/daemonsets`,
+        caption: 'Daemonsets'
+      },
+      {
+        link: `/kube/namespace/\${name}/resourcequotas`,
+        caption: 'Resource Quotas'
+      },
+      {
+        link: `/kube/namespace/\${name}/deployments`,
+        caption: 'Deployments'
+      },
+      {
+        link: `/kube/namespace/\${name}/services`,
+        caption: 'Services'
+      }
+    ]
   }
 ];
 

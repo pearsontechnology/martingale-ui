@@ -181,6 +181,13 @@ const NoMatch = ({ location }) => (
 );
 
 const App = ()=>{
+  const routeRender=(Page)=>{
+    return (match)=>{
+      const params = Object.assign({__settings: {Packs}}, (match.match||{}).params);
+      const page = React.createElement(Page, params);
+      return page;
+    };
+  };
   const routes = Pages.map((page)=>{
     const {
       path,
@@ -188,19 +195,9 @@ const App = ()=>{
       Page
     } = page;
     if(Array.isArray(paths)){
-      return paths.map((path)=>{
-        return <Route key={path} exact path={path} render={(match)=>{
-          const params = (match.match||{}).params;
-          const page = React.createElement(Page, params);
-          return page;
-        }} />
-      });
+      return paths.map((path)=><Route key={path} exact path={path} render={routeRender(Page)} />);
     }
-    return <Route key={path} exact path={path} render={(match)=>{
-      const params = (match.match||{}).params;
-      const page = React.createElement(Page, params);
-      return page;
-    }} />
+    return <Route key={path} exact path={path} render={routeRender(Page)} />;
   });
   return (
     <Router>

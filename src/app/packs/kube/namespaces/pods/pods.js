@@ -37,12 +37,14 @@ const layout = {
             {
               link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}/logs\``},
               caption: 'Logs',
-              btnStyle: 'primary'
-            },
-            {
-              link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}\``},
-              caption: 'Details',
-              btnStyle: 'default'
+              btnStyle: 'primary',
+              items: [
+                {
+                  link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}\``},
+                  caption: 'Details',
+                  btnStyle: 'default'
+                }
+              ]
             },
             {
               delete: {$mapper: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${props.name}\``},

@@ -1,9 +1,17 @@
 import React from 'react';
 import Components from 'martingale-ui-components';
+import {
+  getObjectValue
+} from 'martingale-utils';
+import {
+  Provider
+} from 'martingale-provider';
 const {
+  Panel,
   Form
 } = Components;
 
+/*
 const schema={
   "type": "object",
   "required": [],
@@ -202,5 +210,85 @@ const layout = {
   sideNav: true,
   caption: 'Settings'
 };
+*/
 
-export default layout;
+//export default layout;
+
+const valueSelector = (api, property)=>{
+  if(api && property){
+    return `${api}.${property}`;
+  }
+  if(api){
+    return api;
+  }
+  return property;
+};
+
+const schemaToObject=(schema, data)=>{
+  //return getObjectValue('config.username', data['kubeAuthPlugin']);
+  const {
+    type,
+    api,
+    property,
+    properties,
+    items,
+    default: defaultValue
+  } = schema;
+  const value = (api || property)?getObjectValue(valueSelector(api, property), data):data;
+  switch(type){
+    case('object'):
+      const keys = Object.keys(properties);
+      return keys.reduce((o, key)=>{
+        return Object.assign(o, {[key]: schemaToObject(properties[key], value)});
+      }, {});
+    case('array'):
+      return value;
+    default:
+      if(typeof(value)===type){
+        return value;
+      }
+  }
+  return undefined;
+};
+
+const Layout = (props)=>{
+  const Packs = props.__settings.Packs;
+  const schema = {type: 'object', properties: Packs.reduce((s, p)=>{
+    return Object.assign({}, s, {[p.name]: {type: 'object', properties: p.settings.schema}});
+  }, {})};
+  const apis = Packs.reduce((s, p)=>{
+    const apis = (p.settings||{}).apis||{};
+    return Object.assign(s, apis);
+  }, {});
+  const compProps = {
+    schema,
+    onSubmit({formData}){
+      console.log(arguments)
+      console.log('New Data: ', formData);
+    }
+  };
+  const mapper = (props)=>{
+    const {
+      onSubmit,
+      schema,
+      ...data
+    } = props;
+    return {onSubmit, schema, data: schemaToObject(schema, data)};
+  };
+  return (
+    <Panel inset={true}>
+      <Provider provide={apis} mapper={mapper} props={compProps} Component={Form} />
+    </Panel>
+  );
+};
+
+const opts = {
+  path: '/settings',
+  icon: 'Settings',
+  sideNav: true,
+  caption: 'Settings'
+};
+
+Object.keys(opts).forEach(key=>Layout[key]=opts[key]);
+
+export default Layout;

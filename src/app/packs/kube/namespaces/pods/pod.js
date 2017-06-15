@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube/api";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 
 const layout = {
   $type: 'HeaderPage',
@@ -12,7 +13,7 @@ const layout = {
       props: {
         provide: {
           json: {
-            url: {$map: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${params.id}\``}
+            url: {$map: `\`${KUBE_ROOT}/api/v1/namespaces/\${params.name}/pods/\${params.id}\``}
           }
         },
         Component: {$component: 'JsonView'},

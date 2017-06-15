@@ -6,15 +6,15 @@ const changelog = [
       'Upgrade to react-scripts 1.0.7',
       'Replace standard HTML Tables with react-table',
       'Switch from standalone screens to screen packs',
-      'Easy install of local development environment'
+      'Easy install of local development environment',
+      'Multiple "instances" of packs each with own configuration',
+      'Customization of pack captions in sidebar'
     ]
   }
 ];
 
 const outstandingTasks = [
-  'Settings page',
-  'Multiple "instances" of packs each with own configuration',
-  'Customization of pack captions in sidebar',
+  'Ability to load pack configurations from backend',
   'Full pack isolation, allow duplicate names without collision',
   'Remote pack loading',
   'Isolate existing packs',

@@ -1,7 +1,8 @@
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 const TYPE='Daemonsets';
 // eslint-disable-next-line
-const ENDPOINT='/apis/extensions/v1beta1/namespaces/${params.namespace}/daemonsets';
+const ENDPOINT='apis/extensions/v1beta1/namespaces/${params.namespace}/daemonsets';
 const path='/kube/namespace/:namespace/daemonsets';
 const $mapper=`props.map((ds)=>{
   const md = ds.metadata;
@@ -15,7 +16,7 @@ const $mapper=`props.map((ds)=>{
 
 const actions = [
   {
-    link: {$mapper: `\`/kube/namespace/\${params.namespace}/daemonset/\${props.name}\``},
+    link: {$mapper: `\`/kube/namespace/\${params.namespace}/daemonset/\${props.name}\${extractQueryParams(['apiBase'])}\``},
     caption: 'Details',
     btnStyle: 'primary'
   }

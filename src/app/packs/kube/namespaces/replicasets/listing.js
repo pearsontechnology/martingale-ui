@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 const TYPE='Replicasets';
 // eslint-disable-next-line
 const ENDPOINT='/apis/extensions/v1beta1/namespaces/${params.namespace}/replicasets';
@@ -15,7 +16,7 @@ const $mapper=`props.map((ds)=>{
 
 const actions = [
   {
-    link: {$mapper: `\`/kube/namespace/\${params.namespace}/replicaset/\${props.name}\``},
+    link: {$mapper: `\`/kube/namespace/\${params.namespace}/replicaset/\${props.name}\${extractQueryParams(['apiBase'])}\``},
     caption: 'Details',
     btnStyle: 'primary'
   }

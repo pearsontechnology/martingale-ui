@@ -214,7 +214,7 @@ class Designer extends React.Component{
 
 const settings = {
   path: '/designer',
-  icon: 'Kitchensink',
+  icon: 'Logo',
   sideNav: true,
   caption: 'Designer'
 };

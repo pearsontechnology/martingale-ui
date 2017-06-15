@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube/api";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 
 const layout = {
   $type: 'HeaderPage',
@@ -12,7 +13,7 @@ const layout = {
       props: {
         provide: {
           data: {
-            url: {$map: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods\``},
+            url: {$map: `\`${KUBE_ROOT}/api/v1/namespaces/\${params.name}/pods\``},
             root: 'items',
             mapper: {$mapper: `props.map((pod)=>{
               const running = getObjectValue('status.containerStatuses[0].state.running', pod);
@@ -35,19 +36,19 @@ const layout = {
         props: {
           actions: [
             {
-              link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}/logs\``},
+              link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}/logs\${extractQueryParams(['apiBase'])}\``},
               caption: 'Logs',
               btnStyle: 'primary',
               items: [
                 {
-                  link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}\``},
+                  link: {$mapper: `\`/kube/namespace/\${params.name}/pod/\${props.name}\${extractQueryParams(['apiBase'])}\``},
                   caption: 'Details',
                   btnStyle: 'default'
                 }
               ]
             },
             {
-              delete: {$mapper: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${props.name}\``},
+              delete: {$mapper: `\`${KUBE_ROOT}/api/v1/namespaces/\${params.name}/pods/\${props.name}\${extractQueryParams(['apiBase'])}\``},
               caption: 'Refresh',
               message: `Are you sure you want to refresh \${name}?`
             }

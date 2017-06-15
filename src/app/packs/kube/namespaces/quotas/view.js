@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 // eslint-disable-next-line
 const ENDPOINT='/api/v1/namespaces/${params.namespace}/resourcequotas/${params.name}';
 const path='/kube/namespace/:namespace/resourcequotas/:name';

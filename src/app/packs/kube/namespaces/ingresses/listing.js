@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 const TYPE='Ingresses';
 // eslint-disable-next-line
 const ENDPOINT='/apis/extensions/v1beta1/namespaces/${params.name}/ingresses';
@@ -14,7 +15,7 @@ const $mapper=`props.map((pod)=>{
 })`;
 const actions = [
   {
-    link: {$mapper: `\`/kube/namespace/\${params.name}/ingress/\${props.name}\``},
+    link: {$mapper: `\`/kube/namespace/\${params.name}/ingress/\${props.name}\${extractQueryParams(['apiBase'])}\``},
     caption: 'Details',
     btnStyle: 'primary'
   }

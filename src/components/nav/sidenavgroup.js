@@ -5,10 +5,12 @@ import SideNavLink from './sidenavlink';
 class SideNavGroup extends React.Component{
   renderSubLink(page, key){
     const {
-      path: to,
+      path,
+      link,
       icon = 'Unknown',
       ...props
     } = page;
+    const to = link || path;
     const Icon = typeof(icon)==='function'?icon:Components[`Icon${icon}`] || Components.IconUnknown;
     return <SideNavLink to={to} Icon={Icon} {...props} key={key} />;
   }

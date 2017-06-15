@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 const TYPE='Deployments';
 // eslint-disable-next-line
 const ENDPOINT='/apis/extensions/v1beta1/namespaces/${params.namespace}/deployments';
@@ -15,12 +16,12 @@ const $mapper=`props.map((ds)=>{
 
 const actions = [
   {
-    link: {$mapper: `\`/kube/namespace/\${params.namespace}/deployment/\${props.name}\``},
+    link: {$mapper: `\`/kube/namespace/\${params.namespace}/deployment/\${props.name}\${extractQueryParams(['apiBase'])}\``},
     caption: 'Details',
     btnStyle: 'primary'
   },
   {
-    delete: {$mapper: `\`${KUBE_ROOT}/apis/extensions/v1beta1/namespaces/\${params.namespace}/deployments/\${props.name}\``},
+    delete: {$mapper: `\`${KUBE_ROOT}/apis/extensions/v1beta1/namespaces/\${params.namespace}/deployments/\${props.name}\${extractQueryParams(['apiBase'])}\``},
     caption: 'Delete',
     message: `Are you sure you want to delete \${name}?`
   }

@@ -1,41 +1,42 @@
-const KUBE_ROOT="/api/kube/api";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}/api';
 
 const actions = [
   {
-    link: `/kube/namespace/\${name}/pods`,
+    link: `/kube/namespace/\${name}/pods\${extractQueryParams(['apiBase'])}`,
     caption: 'Pods',
     btnStyle: 'primary',
     items: [
       {
-        link: `/kube/namespace/\${name}/ingresses`,
+        link: `/kube/namespace/\${name}/ingresses\${extractQueryParams(['apiBase'])}`,
         caption: 'Ingresses'
       },
       {
-        link: `/kube/namespace/\${name}/secrets`,
+        link: `/kube/namespace/\${name}/secrets\${extractQueryParams(['apiBase'])}`,
         caption: 'Secrets'
       },
       {
-        link: `/kube/namespace/\${name}/thirdpartyresources`,
+        link: `/kube/namespace/\${name}/thirdpartyresources\${extractQueryParams(['apiBase'])}`,
         caption: 'Third Party Resources'
       },
       {
-        link: `/kube/namespace/\${name}/replicasets`,
+        link: `/kube/namespace/\${name}/replicasets\${extractQueryParams(['apiBase'])}`,
         caption: 'Replicasets'
       },
       {
-        link: `/kube/namespace/\${name}/daemonsets`,
+        link: `/kube/namespace/\${name}/daemonsets\${extractQueryParams(['apiBase'])}`,
         caption: 'Daemonsets'
       },
       {
-        link: `/kube/namespace/\${name}/resourcequotas`,
+        link: `/kube/namespace/\${name}/resourcequotas\${extractQueryParams(['apiBase'])}`,
         caption: 'Resource Quotas'
       },
       {
-        link: `/kube/namespace/\${name}/deployments`,
+        link: `/kube/namespace/\${name}/deployments\${extractQueryParams(['apiBase'])}`,
         caption: 'Deployments'
       },
       {
-        link: `/kube/namespace/\${name}/services`,
+        link: `/kube/namespace/\${name}/services\${extractQueryParams(['apiBase'])}`,
         caption: 'Services'
       }
     ]
@@ -54,7 +55,7 @@ const layout = {
       props: {
         provide: {
           data: {
-            url: `${KUBE_ROOT}/v1/namespaces`,
+            url: {$map: `\`${KUBE_ROOT}/v1/namespaces\``},
             root: 'items',
             mapper: {$mapper: `props
                 .map(r=>{

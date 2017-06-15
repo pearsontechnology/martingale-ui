@@ -4,6 +4,10 @@ import {
   Kube
 } from './packs';
 
+import {
+  addQueryParams
+} from 'martingale-utils';
+
 import React from 'react';
 
 import {
@@ -25,16 +29,40 @@ const {
   Nav,
 } = Components;
 
-const Packs = [
+const isDev = process.env.NODE_ENV==='development';
+
+const packConfigurations=[
+  {
+    pack: 'Kube',
+    caption: 'Kube US1'
+  },
+  {
+    pack: 'Kong'
+  },
+  {
+    pack: 'Martingale'
+  }
+];
+
+if(isDev){
+  packConfigurations.unshift({
+      pack: 'Kube',
+      caption: 'Kube Dev',
+      apiBase: '/api/dev/kube'
+    });
+}
+
+const PackTypes = {
   Kube,
   Kong,
   Martingale
-];
+};
+
+const Packs = Object.keys(PackTypes).map(n=>PackTypes[n]);
 
 const Pages = Packs
   .map((pack)=>{
     const {
-      //name: packName,
       path: packPath = '',
       pages
     } = pack;
@@ -69,20 +97,6 @@ const Pages = Packs
     return pages.concat(...packPages);
   }, []);
 
-/*
-const sideNavItems=Pages.filter((page)=>page.sideNav).map((page)=>{
-  const caption = page.caption || page.path;
-  const linkTo = page.path || page.paths[0];
-  const icon = page.icon || 'Unknown';
-  const Icon = Components[`Icon${icon}`] || Components.IconUnknown;
-  return {
-    caption,
-    Icon,
-    linkTo
-  };
-});
-*/
-
 const getPages = (rawPages)=>{
   if(Array.isArray(rawPages)){
     return rawPages;
@@ -90,10 +104,28 @@ const getPages = (rawPages)=>{
   return Object.keys(rawPages).map((key)=>rawPages[key]);
 };
 
-const sideNavItems = Packs.map((pack)=>{
+const makePackInstace = ({Pack, name, ...props})=>{
+  const pages = Object.keys(Pack.pages).reduce((pages, key)=>{
+    const page = Pack.pages[key];
+    const newPage = Object.assign({}, page, {
+      link: addQueryParams(page.path, props)
+    });
+    return Object.assign({}, pages, {[key]: newPage});
+  }, {});
+  return Object.assign({}, Pack, {
+    name,
+    pages,
+  });
+};
+
+const makeSideNav=(Pack, {caption, ...params}={})=>{
+  const pack = makePackInstace({
+    Pack,
+    name: caption || Pack.name,
+    ...params
+  });
   const {
     name,
-    //path = '',
     icon: packIcon,
   } = pack;
   const pages = getPages(pack.pages).filter((page)=>page.sideNav);
@@ -118,8 +150,12 @@ const sideNavItems = Packs.map((pack)=>{
     caption: name,
     pages: pages.filter((page)=>page.sideNav)
   }
-});
+};
 
+const sideNavItems = packConfigurations.map(({pack, ...options})=>{
+  const Pack = PackTypes[pack];
+  return makeSideNav(Pack, options);
+});
 
 const topNavItems = [];
 /*

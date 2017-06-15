@@ -3,7 +3,8 @@ import {
   MakeIcon
 } from 'martingale-ui-components';
 
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 
 const section = ({title, source, mapper: $mapper})=>{
   return {
@@ -17,7 +18,7 @@ const section = ({title, source, mapper: $mapper})=>{
       props: {
         provide: {
           data: {
-            url: `${KUBE_ROOT}${source}`,
+            url: {$map: `\`${KUBE_ROOT}${source}\``},
             root: 'items',
             mapper: {$mapper: $mapper}
           }

@@ -1,4 +1,5 @@
-const KUBE_ROOT="/api/kube";
+// eslint-disable-next-line
+const KUBE_ROOT='${getQueryParam("apiBase", "/api/kube")}';
 const TYPE='Resource Quotas';
 // eslint-disable-next-line
 const ENDPOINT='/api/v1/namespaces/${params.namespace}/resourcequotas';
@@ -26,7 +27,7 @@ const $mapper=`props.map((ds)=>{
 
 const actions = [
   {
-    link: {$mapper: `\`/kube/namespace/\${params.namespace}/resourcequotas/\${props.name}\``},
+    link: {$mapper: `\`/kube/namespace/\${params.namespace}/resourcequotas/\${props.name}\${extractQueryParams(['apiBase'])}\``},
     caption: 'Details',
     btnStyle: 'primary'
   }

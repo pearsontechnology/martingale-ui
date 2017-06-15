@@ -13,7 +13,7 @@ const layout = {
         provide: {
           data: {
             url: {$map: `\`${KUBE_ROOT}/v1/namespaces/\${params.name}/pods/\${params.id}/log?sinceSeconds=${60*60}\``},
-            mapper: {$mapper: `props.split("\\n").map((l)=>{
+            mapper: {$mapper: `props.split("\\n").filter(l=>!!l).map((l)=>{
               try{
                 return JSON.parse(l);
               }catch(e){

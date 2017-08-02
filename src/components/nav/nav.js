@@ -11,7 +11,7 @@ import {
 import SideNav from './sidenav';
 import TopNav from './topnav';
 
-const Nav =({sideNavItems = [], topNavItems = []})=>{
+const Nav =({sideNav = [], topNav = []})=>{
   return (
     <nav className="navbar navbar-inverse navbar-fixed-top">
       <div className="navbar-header">
@@ -23,9 +23,9 @@ const Nav =({sideNavItems = [], topNavItems = []})=>{
           </button>
           <Link className="navbar-brand" to="/"><IconLogo /> Martingale</Link>
       </div>
-      <TopNav items={topNavItems} />
+      <TopNav items={topNav} />
       <div className="collapse navbar-collapse navbar-ex1-collapse">
-        <SideNav items={sideNavItems} />
+        <SideNav items={sideNav} />
       </div>
   </nav>
   );

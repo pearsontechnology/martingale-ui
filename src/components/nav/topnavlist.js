@@ -8,7 +8,7 @@ const TopNavList=({Icon, caption, items, type})=>{
     cursor: 'pointer'
   };
   const className = type?`${type}-dropdown`:'';
-  const topNavItems = items.map((info, index)=>{
+  const topNav = items.map((info, index)=>{
     const {
       divider = false,
       linkTo: to,
@@ -23,7 +23,7 @@ const TopNavList=({Icon, caption, items, type})=>{
     <LiDropdown>
       <a style={linkStyles} className={`dropdown-toggle`} data-toggle="dropdown"><Icon /> {caption} <b className="caret"></b></a>
       <ul className={`dropdown-menu ${className}`}>
-        {topNavItems}
+        {topNav}
       </ul>
     </LiDropdown>
   );

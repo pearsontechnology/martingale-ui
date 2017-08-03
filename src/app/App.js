@@ -104,8 +104,9 @@ const Wrapper = (opts)=>{
             config: p.config
           }];
         }
+        return false;
       });
-    return config.concat(...pathConfigs);
+    return config.concat(...pathConfigs).filter(c=>!!c);
   }, []));
 
   const routeRender=(Page)=>{

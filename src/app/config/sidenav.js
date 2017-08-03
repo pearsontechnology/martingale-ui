@@ -1,5 +1,6 @@
 import {
-  addQueryParams
+  addQueryParams,
+  getObjectValue
 } from 'martingale-utils';
 
 const isTheSamePage = (p1, p2)=>p1.caption === p2.caption && p1.path === p2.path;
@@ -32,20 +33,33 @@ const mkPath = (src, params)=>{
   return src;
 };
 
+const mkDynamicPath = (pattern, params, config)=>{
+  const path = getObjectValue(pattern, {config});
+  return mkPath(path, params);
+};
+
 const sideNavFromPack = (pack, {caption, config = {}, icon: configIcon, Icon: configIconComponent, pages: navPages = {}, params} = {})=>{
-  const toPage = (p)=>({
-      caption: p.caption,
-      icon: p.icon || p.Icon,
-      path: mkPath(p.path, params),
-      paths: p.paths?p.paths.map((p)=>mkPath(p, params)):undefined,
-      isDashboard: p.isDashboard || false,
-      config: Object.assign({}, config, p.config)
-    });
+  const toPage = (p)=>{
+      if((!p.path)&&(!p.dynamicPath)){
+        console.error(`Page "${p.caption}" marked as sideNav but no path or dynamicPath defined`);
+        return false;
+      }
+      const path = p.dynamicPath?mkDynamicPath(p.dynamicPath, params, config):mkPath(p.path, params);
+      return {
+        caption: p.caption,
+        icon: p.icon || p.Icon,
+        path,
+        isDashboard: p.isDashboard || false,
+        config: Object.assign({}, config, p.config)
+      };
+    };
   const pages = getPages(pack.pages).filter((page)=>page.sideNav).map(toPage);
+  const availablePages = pages.filter(p=>!!p);
+
   const res = {
     caption: caption || pack.caption || pack.name,
     icon: getIcon(configIcon || configIconComponent || pack.icon, pages),
-    pages: uniquePages(getPages(navPages).map(toPage).concat(pages)),
+    pages: availablePages.length?uniquePages(availablePages.concat(pages)):[],
     config
   };
   return res;

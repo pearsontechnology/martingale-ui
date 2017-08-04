@@ -11,7 +11,7 @@ const DataViewPage=(props)=>{
     View=JsonView,
     ...rest
   } = props;
-  return <ProvidedPage Component={View} {...rest} />;
+  return <ProvidedPage Component={View} inset={true} {...rest} />;
 };
 
 export default DataViewPage;

@@ -5,6 +5,7 @@ import {
 import linkSpecs from './specs';
 import linkPacks from './packs';
 import linkSideNav from './sidenav';
+import linkNavConfigs from './navconfigs';
 
 const DEFAULT_CONFIG = {state: 'noconfig'};
 
@@ -18,7 +19,12 @@ class Config extends React.Component{
     linkSpecs(config,
       (err, config)=>linkPacks(config,
         (err, config)=>linkSideNav(config,
-          (err, config)=>this.setState(Object.assign(config, {state: 'loaded'})))));
+          (err, config)=>linkNavConfigs(config,
+            (err, config)=>this.setState(Object.assign(config, {state: 'loaded'}))
+          )
+        )
+      )
+    );
   }
 
   componentDidMount(){

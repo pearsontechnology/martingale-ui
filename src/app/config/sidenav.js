@@ -46,6 +46,7 @@ const sideNavFromPack = (pack, {caption, config = {}, icon: configIcon, Icon: co
       }
       const path = p.dynamicPath?mkDynamicPath(p.dynamicPath, params, config):mkPath(p.path, params);
       return {
+        pack: pack.name,
         caption: p.caption,
         icon: p.icon || p.Icon,
         path,
@@ -57,6 +58,7 @@ const sideNavFromPack = (pack, {caption, config = {}, icon: configIcon, Icon: co
   const availablePages = pages.filter(p=>!!p);
 
   const res = {
+    pack: pack.name,
     caption: caption || pack.caption || pack.name,
     icon: getIcon(configIcon || configIconComponent || pack.icon, pages),
     pages: availablePages.length?uniquePages(availablePages.concat(pages)):[],

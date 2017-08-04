@@ -106,11 +106,15 @@ const pieData = [
   ];
 
 const layout = {
-  $type: 'HeaderPage',
-  props: {
-    title: 'Kitchen Sink',
-  },
+  $type: 'Page',
+
   children: [
+    {
+      $type: 'PageHeader',
+      props: {
+        title: 'Kitchen Sink',
+      }
+    },
     {
       $type: 'Row',
       children: [

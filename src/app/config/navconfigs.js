@@ -12,8 +12,8 @@ const linkNavConfigs = (baseConfig, callback)=>{
     const sideNavItem = sideNav[key];
     const config = sideNavItem.config;
     const pack = packs.find((p)=>p.name === sideNavItem.pack);
-    if(pack && config && pack.baseUrl){
-      const path = pack.baseUrl[0]==='/'?pack.baseUrl:getObjectValue(pack.baseUrl, config);
+    if(pack && config && pack.basePath){
+      const path = pack.basePath[0]==='/'?pack.basePath:getObjectValue(pack.basePath, config);
       nc.push({
         path,
         config

@@ -47,6 +47,7 @@ const layout = {
     {
       "$type": "Panel",
       "props": {
+        sm: 12,
         "inset": true
       },
       "children": [
@@ -63,6 +64,7 @@ const layout = {
     {
       $type: 'Panel',
       props: {
+        sm: 12,
         inset: true,
         title: 'Outstanding Tasks'
       },
@@ -76,6 +78,7 @@ const layout = {
     {
       $type: 'Panel',
       props: {
+        sm: 12,
         inset: true,
         title: 'Changelog'
       },

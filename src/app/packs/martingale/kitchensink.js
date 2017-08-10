@@ -78,6 +78,17 @@ const KongTestSchema = {
   }
 };
 
+const scatterData = [
+  {
+    name: 'Test 1',
+    data: [
+      {x: 1, y: 1, z: 10},
+      {x: 2, y: 3, z: 40},
+      {x: 6, y: 8, z: 18},
+    ]
+  }
+];
+
 const lineData = [
     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
     {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
@@ -474,6 +485,23 @@ const layout = {
                 data: barData,
                 bars: barBars,
                 XAxisKey: barXAxisKey
+              }
+            }
+          ]
+        },
+        {
+          $type: 'Panel',
+          props: {
+            inset: true,
+            title: 'Scatter Chart',
+            sm: 12,
+            lg: 6
+          },
+          children: [
+            {
+              $type: 'ScatterChart',
+              props: {
+                scatters: scatterData
               }
             }
           ]

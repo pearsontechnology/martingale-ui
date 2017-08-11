@@ -511,6 +511,42 @@ const layout = {
     {
       $type: 'PageHeader',
       props: {
+        title: 'Tabs'
+      }
+    },
+    {
+      $type: 'Tabs',
+      props: {
+        title: 'Tabbed Area',
+        tabs: [
+          {
+            title: 'Tab 1',
+            children: 'Hello from tab 1.'
+          },
+          {
+            title: 'Tab 2',
+            children: [
+              {
+                $type: 'p',
+                children: 'Hello from tab 2.'
+              },
+              {
+                $type: 'p',
+                children: 'It has two paragraph tags in it.'
+              }
+            ]
+          },
+          {
+            title: 'Tab 3',
+            inset: false,
+            children: 'This is tab 3.  It has the inset property set false.'
+          }
+        ]
+      }
+    },
+    {
+      $type: 'PageHeader',
+      props: {
         title: 'Tables'
       }
     },

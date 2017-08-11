@@ -46,6 +46,7 @@ const DataViewPage=(props)=>{
     footer,
     mapper,
     root,
+    refresh,
     ...rest
   } = props;
   const footerContents = getFooterContents(footer, props);
@@ -53,7 +54,8 @@ const DataViewPage=(props)=>{
     data: {
       url,
       mapper,
-      root
+      root,
+      refresh
     },
   };
   return (

@@ -17,6 +17,7 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
+    "pluralize": "^5.0.0",
     "js-yaml": "^3.7.0"
   },
   "devDependencies": {

@@ -39,6 +39,15 @@ const mkDynamicPath = (pattern, params, config)=>{
 };
 
 const sideNavFromPack = (pack, {caption, config = {}, icon: configIcon, Icon: configIconComponent, pages: navPages = {}, params} = {})=>{
+  const {
+    config: packConfig = {}
+  } = pack;
+  const defaultConfig = Object.keys(packConfig)
+      .filter(ci=>typeof(packConfig[ci].default)!=='undefined')
+      .reduce((cfg, key)=>{
+        cfg[key] = packConfig[key].default;
+        return cfg;
+      }, {});
   const toPage = (p)=>{
       if((!p.path)&&(!p.dynamicPath)){
         console.error(`Page "${p.caption}" marked as sideNav but no path or dynamicPath defined`);
@@ -51,7 +60,7 @@ const sideNavFromPack = (pack, {caption, config = {}, icon: configIcon, Icon: co
         icon: p.icon || p.Icon,
         path,
         isDashboard: p.isDashboard || false,
-        config: Object.assign({}, config, p.config)
+        config: Object.assign({}, defaultConfig, config, p.config)
       };
     };
   const pages = getPages(pack.pages).filter((page)=>page.sideNav).map(toPage);

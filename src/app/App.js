@@ -85,7 +85,6 @@ const Wrapper = (opts)=>{
   const loading = state === 'loading';
   const hasConfig = state !== 'noconfig';
   const Pages = packsToPages(packs);
-
   const getSideNavPages = (sn)=>{
     if(Array.isArray(sn.pages)){
       return sn.pages;
@@ -112,7 +111,6 @@ const Wrapper = (opts)=>{
       });
     return config.concat(...pathConfigs).filter(c=>!!c);
   }, []));
-
   const getNavConfig = (path)=>{
     const config = navConfigs.reduce((config, nc)=>{
       if(path.indexOf(nc.path)===0){

@@ -43,9 +43,9 @@ const sideNavFromPack = (pack, {caption, config = {}, icon: configIcon, Icon: co
     config: packConfig = {}
   } = pack;
   const defaultConfig = Object.keys(packConfig)
-      .filter(ci=>typeof(packConfig[ci].default)!=='undefined')
+      .filter(ci=>typeof(packConfig[ci] && packConfig[ci].default)!=='undefined')
       .reduce((cfg, key)=>{
-        cfg[key] = packConfig[key].default;
+        cfg[key] = packConfig[key] && packConfig[key].default;
         return cfg;
       }, {});
   const toPage = (p)=>{

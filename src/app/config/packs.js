@@ -67,8 +67,8 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}
     }
     try{
       // eslint-disable-next-line
-      const f = new Function('pack, done', initScript);
-      const res = f(pack);
+      const f = new Function('{pack, easyFetch, config, sideNav}', initScript);
+      const res = f({pack, easyFetch: fetch, config, sideNav: sideNavItems});
       if(res instanceof Promise){
         return res
             .then((newPack)=>{

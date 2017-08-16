@@ -9,6 +9,22 @@ import async from 'async';
 import YAML from 'js-yaml';
 import * as Packs from '../packs';
 
+const scripts = [];
+
+const createScript = (src, callback)=>{
+  if(scripts.indexOf(src)>-1){
+    return setImmediate(callback);
+  }
+  scripts.push(src);
+  const script = document.createElement('script');
+  script.src = src;
+  script.onload = ()=>callback();
+  script.async = true;
+  document.body.appendChild(script);
+};
+
+const inited = [];
+
 const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}, callback)=>{
   const done = (errs, packDefs)=>{
     const packs = packDefs.filter(p=>betterType(p)==='object');
@@ -28,6 +44,70 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}
     }, sideNavItems);
     return callback(errs, Object.assign({}, config, {packs, sideNav}));
   };
+
+  const loadScripts = (pack, next)=>{
+    if(Array.isArray(pack.externalScripts)){
+      return async.each(pack.externalScripts, (source, nextScript)=>{
+        createScript(source, nextScript);
+      }, ()=>next(null, pack));
+    }
+    return next(null, pack);
+  };
+
+  const initPack = (pack, next)=>{
+    if(inited.indexOf(pack.name)>-1){
+      return setImmediate(()=>next(null, pack));
+    }
+    inited.push(pack.name);
+    const {
+      init: initScript
+    } = pack || {};
+    if(!initScript){
+      return next(null, pack);
+    }
+    try{
+      // eslint-disable-next-line
+      const f = new Function('pack, done', initScript);
+      const res = f(pack);
+      if(res instanceof Promise){
+        return res
+            .then((newPack)=>{
+              const packDef = newPack || pack;
+              return next(null, packDef);
+            })
+            .catch((err)=>{
+              console.error(pack.name, err);
+              next(err);
+            });
+      }
+      const packDef = res || pack;
+      return next(null, packDef);
+      /*
+      return f(pack, (err, newPack)=>{
+        if(err){
+          console.error(pack.name, err);
+          return next(err);
+        }
+        const packDef = newPack || pack;
+        console.log('pack def: ', packDef);
+        try{
+          return next(null, packDef);
+        }catch(e){
+          console.error(e);
+          return next(e);
+        }
+      });
+      */
+    }catch(e){
+      console.error(pack.name, e);
+      return next(null, pack);
+    }
+  };
+
+  const initPacks = (errs, packDefs)=>{
+    return async.map(packDefs, initPack, done);
+  };
+
   return async.map(definedPacks, (p, next)=>{
     if(typeof(p)==='string'){
       if(Packs[p]){
@@ -46,11 +126,11 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}
             }
             try{
               const json = JSON.parse(text);
-              return setImmediate(()=>next(null, json));
+              return setImmediate(()=>loadScripts(json, next));
             }catch(e){
               try{
                 const yaml = YAML.safeLoad(text);
-                return setImmediate(()=>next(null, yaml));
+                return setImmediate(()=>loadScripts(yaml, next));
               }catch(e2){
                 console.error('Error parsing:\n', text);
                 console.error('JSON: ', e);
@@ -61,7 +141,7 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}
           });
     }
     return next(null, p);
-  }, done);
+  }, initPacks);
 };
 
 export default linkPacks;

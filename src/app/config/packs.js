@@ -126,10 +126,12 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}
             }
             try{
               const json = JSON.parse(text);
+              json.sourceLocation = p;
               return setImmediate(()=>loadScripts(json, next));
             }catch(e){
               try{
                 const yaml = YAML.safeLoad(text);
+                yaml.sourceLocation = p;
                 return setImmediate(()=>loadScripts(yaml, next));
               }catch(e2){
                 console.error('Error parsing:\n', text);

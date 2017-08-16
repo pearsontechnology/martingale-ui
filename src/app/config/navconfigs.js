@@ -16,7 +16,8 @@ const linkNavConfigs = (baseConfig, callback)=>{
       const path = pack.basePath[0]==='/'?pack.basePath:getObjectValue(pack.basePath, {config});
       nc.push({
         path,
-        config
+        pack: pack,
+        config: config
       });
     }
     return nc;

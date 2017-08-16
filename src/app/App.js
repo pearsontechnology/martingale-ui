@@ -3,6 +3,7 @@ import {Config} from './config';
 import Components from '../components';
 
 import {
+  merge,
   isTheSame
 } from 'martingale-utils';
 
@@ -117,7 +118,7 @@ const Wrapper = (opts)=>{
         if(config.l < nc.path.length){
           return {
             l: nc.path.length,
-            config: nc.config
+            config: Object.assign(nc.pack.config || {}, nc.config)
           };
         }
       }
@@ -129,7 +130,7 @@ const Wrapper = (opts)=>{
   const routeRender=(Page)=>{
     return (match)=>{
       const configs = sideNavConfigs.filter(c=>c.path===match.location.pathname);
-      const config = (configs.shift() || {}).config || getNavConfig(match.location.pathname);
+      const config = merge(getNavConfig(match.location.pathname), (configs.shift() || {}).config || {});
       const params = {__settings: {packs}, config, params: (match.match||{}).params || {}};
       const page = React.createElement(Page, params);
       return page;

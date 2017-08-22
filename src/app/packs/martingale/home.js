@@ -1,5 +1,6 @@
 const changelog = [
   {
+    // can't link to the package.json due to stupid restrictions
     version: '0.1.1',
     changes: [
       'Added changelog',
@@ -8,17 +9,16 @@ const changelog = [
       'Switch from standalone screens to screen packs',
       'Easy install of local development environment',
       'Multiple "instances" of packs each with own configuration',
-      'Customization of pack captions in sidebar'
+      'Customization of pack captions in sidebar',
+      'Ability to load pack configurations from backend',
+      'Full pack isolation, allow duplicate names without collision',
+      'Remote pack loading',
+      'Isolate existing packs',
     ]
   }
 ];
 
 const outstandingTasks = [
-  'Ability to load pack configurations from backend',
-  'Full pack isolation, allow duplicate names without collision',
-  'Remote pack loading',
-  'Isolate existing packs',
-  'Ability to utilize credential groups for pack loading - This might not actually belong in Martingale proper',
   'Pack scaffold/designer/template/??? - Some easy way to define/create a new pack'
 ];
 

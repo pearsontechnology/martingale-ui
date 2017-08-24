@@ -12,7 +12,7 @@ const linkSpecs = ({specs = [], ...config}, callback)=>{
       callback(err, s = {}){
         const swagger = s['x-martingale'] || {};
         if(err){
-          console.error(err);
+          console.error('Error loading specs: ', err);
           return next(err);
         }
         return next(null, swagger);

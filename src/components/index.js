@@ -6,6 +6,7 @@ import Charts from 'martingale-charts';
 import {
   Provider
 } from 'martingale-provider';
+import * as Panels from './panels';
 
 const Components = {
   ...Nav,
@@ -14,6 +15,7 @@ const Components = {
   ...PageSchema,
   ...Pages,
   ...Charts,
+  ...Panels,
   Provider
 };
 

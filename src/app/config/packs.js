@@ -25,7 +25,7 @@ const createScript = (src, callback)=>{
 
 const inited = [];
 
-const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems, ...config}, callback)=>{
+const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...config}, callback)=>{
   const done = (errs, packDefs)=>{
     const packs = packDefs.filter(p=>betterType(p)==='object');
     const sideNav = packs.reduce((sideNav, pack)=>{

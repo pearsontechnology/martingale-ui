@@ -6,13 +6,8 @@ import {
 
 import {
   PanelFooter,
-  PanelTitle,
   DataView
 } from 'martingale-ui-components';
-
-import Page from '../page';
-
-import {PageHeader} from '../header';
 
 const getFooterContents = (footer, props, defaultValue)=>{
   if(typeof(footer) === 'function'){
@@ -38,11 +33,9 @@ const getFooterContents = (footer, props, defaultValue)=>{
   }
 };
 
-const DataViewPage=(props)=>{
+const DataViewPanel=(props)=>{
   const {
-    Icon,
     url,
-    title,
     footer,
     mapper,
     root,
@@ -61,15 +54,12 @@ const DataViewPage=(props)=>{
     }
   };
   return (
-    <Page>
-      <PageHeader>{Icon?<PanelTitle>{React.createElement(Icon)} {title}</PanelTitle>:title}</PageHeader>
       <Provider
         Component={DataView}
         provide={provide}
         props={Object.assign(rest, {footerContents})}
         />
-    </Page>
     );
 };
 
-export default DataViewPage;
+export default DataViewPanel;

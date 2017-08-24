@@ -202,7 +202,7 @@ const layout = {
                 type: 'danger'
               },
               children: 'A dismissable danger Alert'
-            },
+            }
           ]
         },
         {
@@ -700,6 +700,16 @@ const layout = {
           }
         }
       ]
+    },
+    {
+      $type: 'PageHeader',
+      props: {
+        title: 'HTML'
+      }
+    },
+    {
+      $type: 'HTML',
+      children: '<div class="panel panel-default"><p class="panel-body">This is coded as pure html<p></div>'
     },
     {
       $type: 'PageHeader',

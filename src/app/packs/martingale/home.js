@@ -90,7 +90,7 @@ const layout = {
       ]
     }
   ],
-  "path": "/",
+  "paths": ["/", "/martingale"],
   "icon": "Dashboard",
   "caption": "Home"
 };

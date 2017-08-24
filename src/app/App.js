@@ -130,7 +130,7 @@ const Wrapper = (opts)=>{
   const routeRender=(Page)=>{
     return (match)=>{
       const configs = sideNavConfigs.filter(c=>c.path===match.location.pathname);
-      const config = merge(getNavConfig(match.location.pathname), (configs.shift() || {}).config || {});
+      const config = merge(getNavConfig(match.location.pathname), (configs.pop() || {}).config || {});
       const params = {__settings: {packs}, config, params: (match.match||{}).params || {}};
       const page = React.createElement(Page, params);
       return page;

@@ -27,6 +27,9 @@ const inited = [];
 
 const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...config}, callback)=>{
   const done = (errs, packDefs)=>{
+    if(errs){
+      return callback(errs);
+    }
     const packs = packDefs.filter(p=>betterType(p)==='object');
     const sideNav = packs.reduce((sideNav, pack)=>{
       if(pack.sideNav){
@@ -42,7 +45,7 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...co
       }
       return sideNav;
     }, sideNavItems);
-    return callback(errs, Object.assign({}, config, {packs, sideNav}));
+    return callback(null, Object.assign({}, config, {packs, sideNav}));
   };
 
   const loadScripts = (pack, next)=>{
@@ -105,6 +108,9 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...co
   };
 
   const initPacks = (errs, packDefs)=>{
+    if(errs){
+      return done(errs);
+    }
     return async.map(packDefs, initPack, done);
   };
 
@@ -140,7 +146,8 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...co
               }
               return next(e);
             }
-          });
+          })
+          .catch((e)=>next(e));
     }
     return next(null, p);
   }, initPacks);

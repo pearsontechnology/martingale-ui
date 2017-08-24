@@ -7,7 +7,7 @@ import linkPacks from './packs';
 import linkSideNav from './sidenav';
 import linkNavConfigs from './navconfigs';
 
-import {Alert} from 'martingale-ui-components';
+import {Error} from 'martingale-ui-components';
 
 const DEFAULT_CONFIG = {state: 'noconfig'};
 
@@ -36,17 +36,6 @@ class Config extends React.Component{
         ),
       )
     );
-    /*
-    linkSpecs(config,
-      (err, config)=>linkPacks(config,
-        (err, config)=>linkSideNav(config,
-          (err, config)=>linkNavConfigs(config,
-            (err, config)=>this.setState(Object.assign(config, {state: 'loaded'}))
-          )
-        )
-      )
-    );
-    */
   }
 
   componentDidMount(){
@@ -69,19 +58,7 @@ class Config extends React.Component{
     const {
       error
     } = this.state;
-    if(typeof(error)==='string'){
-      return <Alert type='danger'>{error}</Alert>;
-    }
-    if(error.error && error.statusCode && error.message){
-      return <Alert type='danger'><strong>{error.error} ({error.statusCode}):</strong> {error.message}</Alert>;
-    }
-    if(error.error && error.message){
-      return <Alert type='danger'><strong>{error.error}:</strong> {error.message}</Alert>;
-    }
-    if(error.message){
-      return <Alert type='danger'>{error.message}</Alert>;
-    }
-    return <Alert type='danger'><pre>{JSON.stringify(error, null, 2)}</pre></Alert>;
+    return <Error error={error} />;
   };
 
   render(){

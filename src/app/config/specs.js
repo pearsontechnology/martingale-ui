@@ -29,20 +29,32 @@ const linkSpecs = ({specs = [], ...config}, callback)=>{
       return callback(err);
     }
     async.reduce(specs, config, (config, spec, next)=>{
-      doPacks(spec, (err, spec)=>doSideNav(spec, (err, spec)=>doTopNav(spec, (err, spec)=>{
+      return doPacks(spec, (err, spec)=>{
+        if(err){
+          return next(err);
+        }
+        return doSideNav(spec, (err, spec)=>{
+          if(err){
+            return next(err);
+          }
+          return doTopNav(spec, (err, spec)=>{
+            if(err){
+              return next(err);
+            }
+            if(Array.isArray(spec.packs)){
+              config.packs = (config.packs || []).concat(spec.packs);
+            }
+            if(Array.isArray(spec.sideNav)){
+              config.sideNav = (config.sideNav || []).concat(spec.sideNav);
+            }
+            if(Array.isArray(spec.topNav)){
+              config.topNav = (config.topNav || []).concat(spec.topNav);
+            }
 
-        if(Array.isArray(spec.packs)){
-          config.packs = (config.packs || []).concat(spec.packs);
-        }
-        if(Array.isArray(spec.sideNav)){
-          config.sideNav = (config.sideNav || []).concat(spec.sideNav);
-        }
-        if(Array.isArray(spec.topNav)){
-          config.topNav = (config.topNav || []).concat(spec.topNav);
-        }
-
-        return next(null, config);
-      })));
+            return next(null, config);
+          });
+        });
+      });
     }, callback);
   };
   async.map(specs, loadSpec, done);

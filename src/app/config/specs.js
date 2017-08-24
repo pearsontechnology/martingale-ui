@@ -25,6 +25,9 @@ const linkSpecs = ({specs = [], ...config}, callback)=>{
   const doTopNav = (spec, callback)=>callback(null, spec);
 
   const done = (err, specs)=>{
+    if(err){
+      return callback(err);
+    }
     async.reduce(specs, config, (config, spec, next)=>{
       doPacks(spec, (err, spec)=>doSideNav(spec, (err, spec)=>doTopNav(spec, (err, spec)=>{
 

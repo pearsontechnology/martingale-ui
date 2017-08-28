@@ -1,6 +1,7 @@
 import ListingPage from './listing';
 import ProvidedPage from './provided';
 import DataViewPage from './dataview';
+import {DataEditPage} from './dataedit';
 import {HeaderPage, PageHeader} from './header';
 import {NoMatch} from './nomatch';
 import {NoConfig} from './noconfig';
@@ -16,5 +17,6 @@ export {
   NoConfig,
   Loading,
   DataViewPage,
+  DataEditPage,
   ProvidedPage
 };

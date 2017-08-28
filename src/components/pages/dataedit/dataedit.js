@@ -30,7 +30,7 @@ const DataEditPage = (props)=>{
   } = props;
 
   const provide = source?(()=>{
-    if(typeof(source))==='string'){
+    if(typeof(source)==='string'){
       return {
         data: {
           url: source,

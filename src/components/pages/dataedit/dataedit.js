@@ -29,7 +29,19 @@ const DataEditPage = (props)=>{
     ...rest
   } = props;
 
-  const provide = source?source:{
+  const provide = source?(()=>{
+    if(typeof(source))==='string'){
+      return {
+        data: {
+          url: source,
+          mapper,
+          root,
+          headers
+        }
+      };
+    }
+    return source;
+  })():{
     data: {
       url,
       mapper,

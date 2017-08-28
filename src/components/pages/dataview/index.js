@@ -41,6 +41,7 @@ const getFooterContents = (footer, props, defaultValue)=>{
 const DataViewPage=(props)=>{
   const {
     Icon,
+    provide: explicitProvide,
     url,
     title,
     footer,
@@ -51,7 +52,7 @@ const DataViewPage=(props)=>{
     ...rest
   } = props;
   const footerContents = getFooterContents(footer, props);
-  const provide = {
+  const provide = explicitProvide?explicitProvide:{
     data: {
       url,
       mapper,
@@ -60,12 +61,14 @@ const DataViewPage=(props)=>{
       headers
     }
   };
+  const finalMapper = explicitProvide?mapper:undefined;
   return (
     <Page>
       <PageHeader>{Icon?<PanelTitle>{React.createElement(Icon)} {title}</PanelTitle>:title}</PageHeader>
       <Provider
         Component={DataView}
         provide={provide}
+        mapper={finalMapper}
         props={Object.assign(rest, {footerContents})}
         />
     </Page>

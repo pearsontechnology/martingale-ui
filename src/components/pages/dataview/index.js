@@ -49,6 +49,7 @@ const DataViewPage=(props)=>{
     root,
     refresh,
     headers,
+    mode,
     ...rest
   } = props;
   const footerContents = getFooterContents(footer, props);
@@ -58,7 +59,8 @@ const DataViewPage=(props)=>{
       mapper,
       root,
       refresh,
-      headers
+      headers,
+      mode
     }
   };
   const finalMapper = explicitProvide?mapper:undefined;

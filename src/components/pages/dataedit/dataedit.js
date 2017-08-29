@@ -34,7 +34,6 @@ const DataEditPage = (props)=>{
       return {
         data: {
           url: source,
-          mapper,
           root,
           headers
         }
@@ -66,5 +65,7 @@ const DataEditPage = (props)=>{
     </Page>
   );
 };
+
+DataEditPage.propTypes = Object.assign({}, Form.propTypes);
 
 export default DataEditPage;

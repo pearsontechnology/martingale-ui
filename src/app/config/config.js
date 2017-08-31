@@ -5,7 +5,6 @@ import {
 import linkSpecs from './specs';
 import linkPacks from './packs';
 import linkSideNav from './sidenav';
-import linkNavConfigs from './navconfigs';
 
 import {Error} from 'martingale-ui-components';
 
@@ -30,10 +29,8 @@ class Config extends React.Component{
     linkSpecs(config,
       this.trapError(linkPacks,
         this.trapError(linkSideNav,
-          this.trapError(linkNavConfigs,
-            this.trapError((config)=>this.setState(Object.assign(config, {state: 'loaded'})))
-          )
-        ),
+          this.trapError((config)=>this.setState(Object.assign(config, {state: 'loaded'})))
+        )
       )
     );
   }

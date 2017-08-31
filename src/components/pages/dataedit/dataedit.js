@@ -28,7 +28,6 @@ const DataEditPage = (props)=>{
     inset = true,
     ...rest
   } = props;
-
   const provide = source?(()=>{
     if(typeof(source)==='string'){
       return {

@@ -2,10 +2,7 @@ import {Config} from './config';
 
 import Components from '../components';
 
-import {
-  merge,
-  isTheSame
-} from 'martingale-utils';
+import configprovider from './config/configprovider';
 
 import {
   pageSchemaToReact
@@ -69,9 +66,11 @@ const packsToPages = (Packs = [])=>{
     }, []);
 };
 
+/*
 const unique = list => list.filter(
   (e, p, a)=>list.findIndex((e2)=>isTheSame(e, e2)) === p
 );
+*/
 
 const Wrapper = (opts)=>{
   const {
@@ -80,59 +79,18 @@ const Wrapper = (opts)=>{
       //Pages = [],
       sideNav = [],
       topNav = [],
-      navConfigs = []
+      //navConfigs = []
     } = opts;
 
   const loading = state === 'loading';
   const hasConfig = state !== 'noconfig';
   const Pages = packsToPages(packs);
-  const getSideNavPages = (sn)=>{
-    if(Array.isArray(sn.pages)){
-      return sn.pages;
-    }
-    return [sn];
-  };
-
-  const sideNavConfigs = unique(sideNav.reduce((config, sn)=>{
-    const pages = getSideNavPages(sn);
-    const pathConfigs = pages.map((p, i)=>{
-        if(p.paths){
-          return p.paths.map(path=>({
-            path,
-            config: p.config
-          }));
-        }
-        if(p.path){
-          return [{
-            path: p.path,
-            config: p.config
-          }];
-        }
-        return false;
-      });
-    return config.concat(...pathConfigs).filter(c=>!!c);
-  }, []));
-  const getNavConfig = (path)=>{
-    const config = navConfigs.reduce((config, nc)=>{
-      if(path.indexOf(nc.path)===0){
-        if(config.l < nc.path.length){
-          return {
-            l: nc.path.length,
-            config: Object.assign(nc.pack.config || {}, nc.config)
-          };
-        }
-      }
-      return config;
-    }, {l: -1, config: {}});
-    return config.config;
-  };
-
   const routeRender=(Page)=>{
     return (match)=>{
-      const configs = sideNavConfigs.filter(c=>c.path===match.location.pathname);
-      const config = merge(getNavConfig(match.location.pathname), (configs.pop() || {}).config || {});
+      const config = configprovider.get(match.location.pathname);
       const params = {__settings: {packs}, config, params: (match.match||{}).params || {}};
       const page = React.createElement(Page, params);
+      console.debug(match.location.pathname, {config, params, page});
       return page;
     };
   };

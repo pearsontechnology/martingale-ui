@@ -4,7 +4,7 @@ const changelog = [
     version: '0.1.1',
     changes: [
       'Added changelog',
-      'Upgrade to react-scripts 1.0.7',
+      'Upgrade to react-scripts 1.0.13',
       'Replace standard HTML Tables with react-table',
       'Switch from standalone screens to screen packs',
       'Easy install of local development environment',

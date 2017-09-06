@@ -4,6 +4,7 @@
   "private": true,
   "disableHostCheck": true,
   "dependencies": {
+    "js-yaml": "^3.9.1",
     "less": "^2.7.2",
     "less-plugin-clean-css": "^1.5.1",
     "martingale-charts": "^0.0.1",
@@ -11,17 +12,16 @@
     "martingale-provider": "^0.0.1",
     "martingale-ui-components": "^0.0.1",
     "martingale-utils": "^0.0.1",
-    "nodemon": "^1.11.0",
-    "npm-run-all": "^4.0.2",
-    "react": "^15.5.4",
-    "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.5.4",
-    "react-router-dom": "^4.1.1",
-    "pluralize": "^5.0.0",
-    "js-yaml": "^3.7.0"
+    "nodemon": "^1.12.0",
+    "npm-run-all": "^4.1.1",
+    "pluralize": "^5.1.0",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "react-scripts": "1.0.7"
+    "react-scripts": "^1.0.13"
   },
   "scripts": {
     "build-css": "./compile-less",

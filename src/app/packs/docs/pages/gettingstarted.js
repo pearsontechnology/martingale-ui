@@ -16,6 +16,28 @@ function foo(){
   return bar + 3;
 }
 \`\`\`
+
+\`\`\`
+function foo(){
+  const bar = 'value';
+  return bar + 3;
+}
+\`\`\`
+
+\`\`\` yaml
+foo:
+  bar:
+    none: value
+  type: yaml, ftw
+\`\`\`
+
+\`\`\`
+foo:
+  bar:
+    none: value
+  type: yaml, ftw
+\`\`\`
+
 `;
 
 export default {

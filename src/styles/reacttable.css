@@ -438,3 +438,6 @@
   -ms-user-select: none;
   user-select: none;
 }
+.ReactTable .rt-tbody .rt-td {
+  overflow: visible;
+}

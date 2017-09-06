@@ -1,0 +1,17 @@
+.dataView.level-0 dl.level-0 {
+  margin-bottom: 0;
+}
+.dataView dd.level-0 > div.dataView:only-child {
+  border-bottom: 1px dotted silver;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.dataView dd.level-0 > div.dataView:only-child dl {
+  margin-bottom: 0;
+}
+.dataView dd.level-0:last-child > div.dataView:only-child {
+  border-bottom: none;
+}
+.dataView .inset {
+  padding-left: 2em;
+}

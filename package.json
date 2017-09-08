@@ -28,9 +28,10 @@
     "watch-css": "nodemon --delay 1 -e '.less' -x './compile-less'",
     "start-js": "REACT_APP_VERSION=$(node -pe 'require(\"./package.json\").version') react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "yarn build-css && react-scripts build",
+    "build": "yarn doc && yarn build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "docker": "rouster -v ./:/app -w /app -p 3000 -i node:8.4 -e npm start",
+    "doc": "node compile-docs.js",
     "eject": "react-scripts eject"
   }
 }

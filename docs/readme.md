@@ -1,4 +1,12 @@
-const documentContents = `Welcome to Martingale, this guide will walk you through installing and configuring a local standalone version of Martingale that later will be extended with Packs and proxied through Kong to support Google OAuth as a singin option.
+---
+caption: Getting Started
+icon: Alert
+path: /docs/gettingstarted
+filename: gettingstarted.js
+order: 0
+---
+
+Welcome to Martingale, this guide will walk you through installing and configuring a local standalone version of Martingale that later will be extended with Packs and proxied through Kong to support Google OAuth as a singin option.
 
 ## Table of Contents
 
@@ -18,22 +26,22 @@ In order to run Martingale locally you will need a few tools installed:
 
 Clone the Martingale-UI Git Repo from https://github.com/pearsontechnology/martingale-ui to a new folder structure martingale/ui:
 
-\`\`\` shell
+``` shell
 git clone git@github.com:pearsontechnology/martingale-ui.git martingale/ui
-\`\`\`
+```
 
 Change to the new folder and run yarn install:
 
-\`\`\` shell
+``` shell
 cd martingale/ui
 yarn install
-\`\`\`
+```
 
 Start Martingale in standalone mode serving the default Martingale and Documentation packs:
 
-\`\`\` shell
+``` shell
 yarn start
-\`\`\`
+```
 
 Your browser should now open and load http://localhost:3000 displaying the default Martingale home page and two navigation menus.  Under each of these menus are different pages within Martingale to help you get acquainted.
 
@@ -47,16 +55,3 @@ Your browser should now open and load http://localhost:3000 displaying the defau
    * Dockerize - Explains how to create a Docker image from your installation
    * Building Packs - HTTPBin pack, the "Hello World" of Marginale
    * Extended Packs - Packs that use or load other packs
-`;
-
-export default {
-  $type: 'HeaderPage',
-  props: {
-    title: 'Martingale - Getting Started'
-  },
-  children: {
-    $type: 'MarkDown',
-    children: documentContents
-  },
-  path: '/docs/gettingstarted'
-};

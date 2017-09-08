@@ -1,4 +1,5 @@
-const documentContents = `Coming Soon...
+const documentContents = `
+Coming Soon...
 `;
 
 export default {

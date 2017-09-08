@@ -1,4 +1,5 @@
-const documentContents = `In order for Martingale to present a User Interface to interact with systems it needs to know what exists and how to interact with those things.  The configuration file provides Martingale with a starting point on what to load and make available to end users.
+const documentContents = `
+In order for Martingale to present a User Interface to interact with systems it needs to know what exists and how to interact with those things.  The configuration file provides Martingale with a starting point on what to load and make available to end users.
 
 When Martingale is loaded by the browser it will make a request for /config.json file.  You can either edit this file directly (it is kept in martingale/ui/public/config.json) or you can proxy the request (recommended) to return your own custom config.json file (more on this in Installing Packs and Kong sections).
 
@@ -32,6 +33,7 @@ An optional section within the configuration file is the sideNav section:
 \`\`\`
 
 The sideNav section allows you to specify pages that you want displayed as top level navigation items (not placed under a pack grouping).  If you installed a pack but don't want to display the default navigation items then you could use the sideNav section to surface only the pages you are interested in.
+
 `;
 
 export default {

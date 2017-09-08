@@ -1,4 +1,5 @@
-const documentContents = `**NOTE:** To follow along with this section you will need to have a local install or dockerized version of Kong available.  Install it from [https://getkong.org/](https://getkong.org/)
+const documentContents = `
+**NOTE:** To follow along with this section you will need to have a local install or dockerized version of Kong available.  Install it from [https://getkong.org/](https://getkong.org/)
 
 **NOTE:** You will also need Docker to run the Pack in a standalone server that we will link to.
 

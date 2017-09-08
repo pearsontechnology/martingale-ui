@@ -1,7 +1,7 @@
 import GettingStarted from './pages/gettingstarted';
 import ConfigurationBasics from './pages/configurationbasics';
 import InstallingPacks from './pages/installingpacks';
-import GettingDockerizedProductionBuilds from './pages/dockerize';
+import Dockerize from './pages/dockerize';
 import BuildingPacks from './pages/buildingpacks';
 import ExtendedPacks from './pages/extendedpacks';
 
@@ -9,7 +9,7 @@ const pages = {
   GettingStarted,
   ConfigurationBasics,
   InstallingPacks,
-  GettingDockerizedProductionBuilds,
+  Dockerize,
   BuildingPacks,
   ExtendedPacks
 };
@@ -25,27 +25,27 @@ export default {
     },
     {
       caption: 'Configuration Basics',
-      icon: 'Note',
+      icon: 'Page',
       path: '/docs/configurationbasics'
     },
     {
       caption: 'Installing Packs',
-      icon: 'Task',
+      icon: 'Page',
       path: '/docs/installingpacks'
     },
     {
       caption: 'Getting Dockerized / Production Builds',
-      icon: 'Note',
+      icon: 'Page',
       path: '/docs/dockerize'
     },
     {
       caption: 'Building Packs',
-      icon: 'Note',
+      icon: 'Page',
       path: '/docs/buildingpacks'
     },
     {
       caption: 'Extended Packs',
-      icon: 'Note',
+      icon: 'Page',
       path: '/docs/extendedpacks'
     }
   ],

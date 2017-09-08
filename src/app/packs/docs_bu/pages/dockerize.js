@@ -1,4 +1,5 @@
-const documentContents = `Even though up until now we have been using the built in development server to work with Martingale, it doesn't require that we use this server.  In production (and most of the time in development) we don't need to use the development server to serve Martingale as it isn't an application stack, it is a web application that consists of only a few files (index.html, app.js, config.json, and some static assets).
+const documentContents = `
+Even though up until now we have been using the built in development server to work with Martingale, it doesn't require that we use this server.  In production (and most of the time in development) we don't need to use the development server to serve Martingale as it isn't an application stack, it is a web application that consists of only a few files (index.html, app.js, config.json, and some static assets).
 
 Also it isn't always desireable to have to open multiple shell windows to keep the development server alive when we are not making changes to the source of Martingale.
 
@@ -60,7 +61,7 @@ You should now be able to hit http://localhost:3000 and see the Martingale UI wi
 export default {
   $type: 'HeaderPage',
   props: {
-    title: 'Martingale - Getting Dockerized / Production Builds'
+    title: 'Martingale - Dockerized'
   },
   children: {
     $type: 'MarkDown',

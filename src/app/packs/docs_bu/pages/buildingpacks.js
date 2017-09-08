@@ -1,14 +1,15 @@
-const documentContents = `Coming Soon...
+const documentContents = `
+Coming Soon...
 `;
 
 export default {
   $type: 'HeaderPage',
   props: {
-    title: 'Martingale - Extended Packs'
+    title: 'Martingale - Building Packs'
   },
   children: {
     $type: 'MarkDown',
     children: documentContents
   },
-  path: '/docs/extendedpacks'
+  path: '/docs/buildingpacks'
 };

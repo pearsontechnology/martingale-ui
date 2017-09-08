@@ -1,4 +1,5 @@
-const documentContents = `Welcome to Martingale, this guide will walk you through installing and configuring a local standalone version of Martingale that later will be extended with Packs and proxied through Kong to support Google OAuth as a singin option.
+const documentContents = `
+Welcome to Martingale, this guide will walk you through installing and configuring a local standalone version of Martingale that later will be extended with Packs and proxied through Kong to support Google OAuth as a singin option.
 
 ## Table of Contents
 

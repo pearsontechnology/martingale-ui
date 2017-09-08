@@ -1,4 +1,10 @@
-const documentContents = `Even though up until now we have been using the built in development server to work with Martingale, it doesn't require that we use this server.  In production (and most of the time in development) we don't need to use the development server to serve Martingale as it isn't an application stack, it is a web application that consists of only a few files (index.html, app.js, config.json, and some static assets).
+---
+caption: Getting Dockerized / Production Builds
+path: /docs/dockerize
+order: 3
+---
+
+Even though up until now we have been using the built in development server to work with Martingale, it doesn't require that we use this server.  In production (and most of the time in development) we don't need to use the development server to serve Martingale as it isn't an application stack, it is a web application that consists of only a few files (index.html, app.js, config.json, and some static assets).
 
 Also it isn't always desireable to have to open multiple shell windows to keep the development server alive when we are not making changes to the source of Martingale.
 
@@ -8,9 +14,9 @@ In this section we will create a Dockerfile that will: create a production build
 
 To create a custom production build of Martingale all we have to do is exeucte:
 
-\`\`\` bash
+``` bash
 yarn build
-\`\`\`
+```
 
 The final assets will be generated and placed in the build folder.  You can copy these assets to any webserver as you see fit.
 
@@ -20,7 +26,7 @@ To deploy Martingale to a container we will first need to create a Docker Image 
 
 Create a new file called Dockerfile, inside of it place the following contents:
 
-\`\`\` docker
+``` docker
 # An Nginx base image to serve static websites
 FROM kyma/docker-nginx
 
@@ -30,7 +36,7 @@ COPY build/ /var/www/
 
 # Start nginx
 CMD 'nginx'
-\`\`\`
+```
 
 **NOTE:** This section is not ment to be a full explination of Docker or Dockerfiles, for that please see [https://www.docker.com/](https://www.docker.com/)
 
@@ -38,9 +44,9 @@ CMD 'nginx'
 
 Now that we have a Dockerfile that defines what our output image should be, lets create a new Docker Image from it that we can run locally:
 
-\`\`\` bash
+``` bash
 docker build -t martingale .
-\`\`\`
+```
 
 **NOTE:** You should change "martingale" above to something unique to you, like your [Docker Hub username]/martingale or whatever.
 
@@ -48,23 +54,10 @@ docker build -t martingale .
 
 Finally we can run this image locally to test it:
 
-\`\`\` bash
+``` bash
 docker run -p 3000:80 martingale
-\`\`\`
+```
 
 You should now be able to hit http://localhost:3000 and see the Martingale UI with all of your changes.
 
 **NOTE:** Change 3000 above to whatever you want your local port to be.
-`;
-
-export default {
-  $type: 'HeaderPage',
-  props: {
-    title: 'Martingale - Getting Dockerized / Production Builds'
-  },
-  children: {
-    $type: 'MarkDown',
-    children: documentContents
-  },
-  path: '/docs/dockerize'
-};

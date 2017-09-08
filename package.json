@@ -16,7 +16,7 @@
     "npm-run-all": "^4.1.1",
     "pluralize": "^5.1.0",
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.2",
+    "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2"
   },
@@ -30,6 +30,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "yarn build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "docker": "rouster -v ./:/app -w /app -p 3000 -i node:8.4 -e npm start",
     "eject": "react-scripts eject"
   }
 }

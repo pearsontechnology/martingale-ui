@@ -29,7 +29,7 @@ const linkSpecs = ({specs = [], ...config}, callback)=>{
       return callback(err);
     }
     async.reduce(specs, config, (config, spec, next)=>{
-      return doPacks(spec, (err, spec)=>{
+      return doPacks(Object.assign({}, config, spec), (err, spec)=>{
         if(err){
           return next(err);
         }

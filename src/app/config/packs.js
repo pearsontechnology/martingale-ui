@@ -85,22 +85,6 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...co
       }
       const packDef = res || pack;
       return next(null, packDef);
-      /*
-      return f(pack, (err, newPack)=>{
-        if(err){
-          console.error(pack.name, err);
-          return next(err);
-        }
-        const packDef = newPack || pack;
-        console.log('pack def: ', packDef);
-        try{
-          return next(null, packDef);
-        }catch(e){
-          console.error(e);
-          return next(e);
-        }
-      });
-      */
     }catch(e){
       console.error(pack.name, e);
       return next(null, pack);

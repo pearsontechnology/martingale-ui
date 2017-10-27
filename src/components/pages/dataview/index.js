@@ -50,6 +50,7 @@ const DataViewPage=(props)=>{
     refresh,
     headers,
     mode,
+    method,
     ...rest
   } = props;
   const footerContents = getFooterContents(footer, props);
@@ -60,6 +61,7 @@ const DataViewPage=(props)=>{
       root,
       refresh,
       headers,
+      method,
       mode
     }
   };

@@ -11,14 +11,34 @@ import * as Packs from '../packs';
 
 const scripts = [];
 
-const createScript = (src, callback)=>{
-  if(scripts.indexOf(src)>-1){
+const createScript = ({source, config}, callback)=>{
+  if(typeof(source)==='object'){
+    if(source.condition){
+      try{
+        // eslint-disable-next-line
+        const f = new Function('config', source.condition);
+        const istrue = f(config);
+        if(istrue){
+          return createScript({source: source.script, config}, callback);
+        }
+        return callback();
+      }catch(e){
+        return callback(e);
+      }
+    }
+    return createScript({source: source.script, config}, callback);
+  }
+  if(scripts.indexOf(source)>-1){
     return setImmediate(callback);
   }
-  scripts.push(src);
+  scripts.push(source);
   const script = document.createElement('script');
-  script.src = src;
+  script.src = source;
   script.onload = ()=>callback();
+  script.onerror = (err)=>{
+    console.error(`Error loading: ${source}`, err);
+    callback(err);
+  };
   script.async = true;
   document.body.appendChild(script);
 };
@@ -51,7 +71,7 @@ const linkPacks = ({packs : definedPacks = [], sideNav: sideNavItems = [], ...co
   const loadScripts = (pack, next)=>{
     if(Array.isArray(pack.externalScripts)){
       return async.each(pack.externalScripts, (source, nextScript)=>{
-        createScript(source, nextScript);
+        createScript({source, config}, nextScript);
       }, ()=>next(null, pack));
     }
     return next(null, pack);

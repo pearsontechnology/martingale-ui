@@ -3,6 +3,15 @@ const changelog = [
     // can't link to the package.json due to stupid restrictions
     version: '0.1.1',
     changes: [
+      'Allow packs to have conditional requirements on externalScripts',
+      'More charts',
+      'Cleaner pack structure with DataPage and etc'
+    ]
+  },
+  {
+    // can't link to the package.json due to stupid restrictions
+    version: '0.1.1',
+    changes: [
       'Added changelog',
       'Upgrade to react-scripts 1.0.13',
       'Replace standard HTML Tables with react-table',

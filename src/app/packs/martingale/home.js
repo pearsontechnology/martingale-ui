@@ -1,7 +1,12 @@
 const changelog = [
   {
-    // can't link to the package.json due to stupid restrictions
-    version: '0.1.1',
+    version: '0.1.3',
+    changes: [
+      'Break Actions out to their own component for easier reuse'
+    ]
+  },
+  {
+    version: '0.1.2',
     changes: [
       'Allow packs to have conditional requirements on externalScripts',
       'More charts',
@@ -9,7 +14,6 @@ const changelog = [
     ]
   },
   {
-    // can't link to the package.json due to stupid restrictions
     version: '0.1.1',
     changes: [
       'Added changelog',

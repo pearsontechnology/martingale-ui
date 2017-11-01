@@ -16,13 +16,14 @@ const createScript = ({source, config}, callback)=>{
     if(source.condition){
       try{
         // eslint-disable-next-line
-        const f = new Function('config', source.condition);
+        const f = new Function('config', `return ${source.condition}`);
         const istrue = f(config);
         if(istrue){
           return createScript({source: source.script, config}, callback);
         }
         return callback();
       }catch(e){
+        console.error(source.script, source.condition, e);
         return callback(e);
       }
     }

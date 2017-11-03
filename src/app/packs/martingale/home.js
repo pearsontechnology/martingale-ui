@@ -103,9 +103,11 @@ const layout = {
       ]
     }
   ],
+  path: 'martingale',
   "paths": ["/", "/martingale"],
   "icon": "Dashboard",
-  "caption": "Home"
+  "caption": "About",
+  sideNav: true
 };
 
 export default layout;

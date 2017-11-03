@@ -20,6 +20,7 @@ const pages = isDev?{
 export default {
   name: 'Martingale',
   icon: 'Logo',
+  /*
   sideNav: [
     {
       caption: 'Kitchen Sink',
@@ -32,5 +33,6 @@ export default {
       path: '/designer'
     }
   ],
+  */
   pages
 };

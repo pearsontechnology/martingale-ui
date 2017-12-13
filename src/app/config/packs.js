@@ -11,6 +11,17 @@ import * as Packs from '../packs';
 
 const scripts = [];
 
+const getSourceFile = ({source, config})=>{
+  try{
+    // eslint-disable-next-line
+    const f = new Function('config', `return \`${source}\``);
+    return f(config);
+  }catch(e){
+    console.error(source, e);
+    return source;
+  }
+};
+
 const createScript = ({source, config}, callback)=>{
   if(typeof(source)==='object'){
     if(source.condition){
@@ -29,15 +40,16 @@ const createScript = ({source, config}, callback)=>{
     }
     return createScript({source: source.script, config}, callback);
   }
-  if(scripts.indexOf(source)>-1){
+  const sourceFile = getSourceFile({source, config});
+  if(scripts.indexOf(sourceFile)>-1){
     return setImmediate(callback);
   }
-  scripts.push(source);
+  scripts.push(sourceFile);
   const script = document.createElement('script');
-  script.src = source;
+  script.src = sourceFile;
   script.onload = ()=>callback();
   script.onerror = (err)=>{
-    console.error(`Error loading: ${source}`, err);
+    console.error(`Error loading: ${sourceFile}`, err);
     callback(err);
   };
   script.async = true;

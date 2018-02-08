@@ -4,24 +4,24 @@
   "private": true,
   "disableHostCheck": true,
   "dependencies": {
-    "js-yaml": "^3.9.1",
-    "less": "^2.7.2",
+    "js-yaml": "^3.10.0",
+    "less": "^2.7.3",
     "less-plugin-clean-css": "^1.5.1",
     "martingale-charts": "^0.0.1",
     "martingale-page-schema": "^0.0.2",
     "martingale-provider": "^0.0.1",
     "martingale-ui-components": "^0.0.1",
     "martingale-utils": "^0.0.1",
-    "nodemon": "^1.12.0",
-    "npm-run-all": "^4.1.1",
+    "nodemon": "^1.14.12",
+    "npm-run-all": "^4.1.2",
     "pluralize": "^5.1.0",
-    "react": "^15.6.1",
-    "react-bootstrap": "^0.31.3",
-    "react-dom": "^15.6.1",
+    "react": "^15.6.2",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^15.6.2",
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "react-scripts": "^1.0.13"
+    "react-scripts": "^1.1.0"
   },
   "scripts": {
     "build-css": "./compile-less",

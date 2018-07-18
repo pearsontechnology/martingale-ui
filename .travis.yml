@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '8'
+- '10'
+deploy:
+  provider: npm
+  email: jeremy.darling@gmail.com
+  api_key:
+    secure: MKyxymzQ1LhMWda24BJvTJv6XfYwf6xAmp2HmFk0VGg8UxPsHnEoPBwZMuaMPc7iXKZCRhQ5nDibPF8orfOP3hGWe4kSPWIROpzAkqnELyFSTxwKMtfRtiNM7c1/iWhcKbCaoDY8+NKt0/itensnPgQsRgtq07ohjJtbaJJmQNYGHfiLHMBbWp1a9v93nGXz0m5+vbWWTIPG3KzT5Yd1gsFfxCuZr9G3AoD2K2+u0mKJkZvaYPoDzeA2jDnaz6YYNW4FgXqZ4B07+EWwjJUtMboW/8DWMspXsqifXWJcvdZfwTJWQSkU1xsTTlouqmpJxmTUwePSLp8tZ3jA5wG1Y29yWYRsig9+0PJpwHsADDSkhKzCarzQjLhaNGmrcyKAFzZbbFoXUyJ4eh44SLETeXu6SMehFem7b5Hb7dLtnVjhymcTSP89bGzu6ozwGmjbiRWN6Rzs0Q7rcJjVuQC2xKq6uUxUGfuOQ4Hw3Pmr6cgvm9RaF3NMgF7lwdOjJtYe+vJZusvT8EmvhHqCBXh8cNHJIPyOGZFdrWacm4x2kL9Il7MMS1MGVqunNJW4YSQEpHaUenHWsWrRHCBpAuvVMNSiDZb/rITxXlH3452iUyApolCNdFCQRgdvPCHX+KNpoQ9a8Zby6/YmqG2pi4ty9gDTKyDs6VKq/7TWEw0esIw=
+  on:
+    tags: true
+    repo: pearsontechnology/martingale-ui

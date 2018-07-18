@@ -1,3 +1,5 @@
+build/
+src/*.css
 yarn.lock
 package-lock.json
 

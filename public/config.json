@@ -1,8 +1,5 @@
 {
-  "packs": [
-    "Martingale",
-    "Documentation"
-  ],
+  "packs": ["Martingale", "Documentation"],
   "sideNav": [
     {
       "pack": "Martingale"

@@ -1,6 +1,6 @@
 import {
   fetchJson
-} from 'martingale-utils';
+} from '@martingale/utils';
 import async from 'async';
 import linkPacks from './packs'
 

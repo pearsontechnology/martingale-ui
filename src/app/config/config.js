@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   fetch
-} from 'martingale-utils';
+} from '@martingale/utils';
 import linkSpecs from './specs';
 import linkPacks from './packs';
 import linkSideNav from './sidenav';
 
-import {Error} from 'martingale-ui-components';
+import {Error} from '@martingale/ui-components';
 
 const DEFAULT_CONFIG = {state: 'noconfig'};
 

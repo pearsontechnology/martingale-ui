@@ -1,7 +1,7 @@
 import {
   addQueryParams,
   getObjectValue
-} from 'martingale-utils';
+} from '@martingale/utils';
 
 import configprovider from './configprovider';
 

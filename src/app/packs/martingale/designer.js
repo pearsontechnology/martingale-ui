@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   pageSchemaToReact
-} from 'martingale-page-schema';
+} from '@martingale/page-schema';
 import pathToRegexp from 'path-to-regexp';
 import Components from '../../../components';
 

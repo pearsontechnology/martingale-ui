@@ -6,7 +6,7 @@ import {
 
 import {
   IconLogo
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 import SideNav from './sidenav';
 import TopNav from './topnav';

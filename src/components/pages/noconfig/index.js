@@ -3,7 +3,7 @@ import {HeaderPage} from '../header';
 
 import {
   Panel
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 const SAMPLE_CONFIG=`{
   "specs": [

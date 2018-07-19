@@ -5,7 +5,7 @@ import Page from '../page';
 import {
   Row,
   Col
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 import PageHeader from './pageheader';
 
 const HeaderPage = ({Icon, title, children})=>{

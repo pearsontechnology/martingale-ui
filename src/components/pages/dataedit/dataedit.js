@@ -2,13 +2,13 @@ import React from 'react';
 
 import {
   Provider
-} from 'martingale-provider';
+} from '@martingale/provider';
 
 import {
   PanelTitle,
   Panel,
   Form
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 import Page from '../page';
 

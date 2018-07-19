@@ -2,12 +2,12 @@ import React from 'react';
 
 import {
   Provider
-} from 'martingale-provider';
+} from '@martingale/provider';
 
 import {
   PanelFooter,
   DataView
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 const getFooterContents = (footer, props, defaultValue)=>{
   if(typeof(footer) === 'function'){

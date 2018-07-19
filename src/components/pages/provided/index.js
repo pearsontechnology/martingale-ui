@@ -5,11 +5,11 @@ import {
   PanelFooter,
   PanelTitle,
   JsonView
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 import{
   Provider
-} from 'martingale-provider';
+} from '@martingale/provider';
 
 import Page from '../page';
 

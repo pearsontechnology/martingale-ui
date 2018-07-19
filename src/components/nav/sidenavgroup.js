@@ -1,5 +1,5 @@
 import React from 'react';
-import Components from 'martingale-ui-components';
+import Components from '@martingale/ui-components';
 import SideNavLink from './sidenavlink';
 
 const getIcon = (icon)=>{

@@ -1,5 +1,5 @@
 import React from 'react';
-import Components from 'martingale-ui-components';
+import Components from '@martingale/ui-components';
 
 const Icons = Object.keys(Components)
   .filter(name=>/^Icon/.exec(name))

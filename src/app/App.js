@@ -6,7 +6,7 @@ import configprovider from './config/configprovider';
 
 import {
   pageSchemaToReact
-} from 'martingale-page-schema';
+} from '@martingale/page-schema';
 
 import React from 'react';
 

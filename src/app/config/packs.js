@@ -1,10 +1,10 @@
 import {
   betterType,
   isTheSame
-} from 'martingale-utils';
+} from '@martingale/utils';
 import {
   fetch
-} from 'martingale-utils';
+} from '@martingale/utils';
 import async from 'async';
 import YAML from 'js-yaml';
 import * as Packs from '../packs';

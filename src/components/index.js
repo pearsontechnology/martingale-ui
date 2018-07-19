@@ -1,11 +1,11 @@
-import UIComps from 'martingale-ui-components';
+import UIComps from '@martingale/ui-components';
 import Nav from './nav';
-import PageSchema from 'martingale-page-schema';
+import PageSchema from '@martingale/page-schema';
 import * as Pages from './pages';
-import Charts from 'martingale-charts';
+import Charts from '@martingale/charts';
 import {
   Provider
-} from 'martingale-provider';
+} from '@martingale/provider';
 import * as Panels from './panels';
 
 const Components = {

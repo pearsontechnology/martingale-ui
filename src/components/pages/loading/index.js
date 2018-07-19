@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   ContainerFluid
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 const Loading = ({ location }) => (
   <ContainerFluid>

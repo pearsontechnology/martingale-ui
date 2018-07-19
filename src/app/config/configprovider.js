@@ -1,6 +1,6 @@
 import {
   betterType
-} from 'martingale-utils';
+} from '@martingale/utils';
 
 const processFunctions = (val)=>{
   if(!val){

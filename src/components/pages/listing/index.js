@@ -2,7 +2,7 @@ import React from 'react';
 
 import {
   Table,
-} from 'martingale-ui-components';
+} from '@martingale/ui-components';
 
 import ProvidedPage from '../provided';
 

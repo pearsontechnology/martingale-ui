@@ -1,11 +1,11 @@
 import React from 'react';
-import Components from 'martingale-ui-components';
+import Components from '@martingale/ui-components';
 import {
   getObjectValue
-} from 'martingale-utils';
+} from '@martingale/utils';
 import {
   Provider
-} from 'martingale-provider';
+} from '@martingale/provider';
 const {
   Panel,
   Form
@@ -109,17 +109,17 @@ const getApi = (api, props)=>{
 };
 
 const getConfig = (props)=>{
-  const uiApi = getApi('martingale-ui', props);
+  const uiApi = getApi('@martingale/ui', props);
 
-  const kongApi = getApi('martingale-kong-api', props);
-  const kongPlugins = getApi('martingale-kong-plugins', props);
+  const kongApi = getApi('@martingale/kong-api', props);
+  const kongPlugins = getApi('@martingale/kong-plugins', props);
   const kongHost = kongApi?kongApi.upstream_url:'';
   const kongAuthPlugin = kongPlugins?(kongPlugins.filter((plugin)=>plugin.name==='upstream-auth-basic').shift()):false;
   const kongUser = kongAuthPlugin?kongAuthPlugin.config.username:'';
   const kongPassword = kongAuthPlugin?kongAuthPlugin.config.password:'';
 
-  const kubeApi = getApi('martingale-kube-api', props);
-  const kubePlugins = getApi('martingale-kube-plugins', props);
+  const kubeApi = getApi('@martingale/kube-api', props);
+  const kubePlugins = getApi('@martingale/kube-plugins', props);
   const kubeHost = kubeApi?kubeApi.upstream_url:'';
   const kubeAuthPlugin = kubePlugins?(kubePlugins.filter((plugin)=>plugin.name==='upstream-auth-basic').shift()):false;
   const kubeUser = kubeAuthPlugin?kubeAuthPlugin.config.username:'';
@@ -183,20 +183,20 @@ const layout = {
       $type: 'Provider',
       props: {
         provide: {
-          'martingale-ui': {
+          '@martingale/ui': {
             url: '/api/kong/apis/martingale-ui'
           },
-          'martingale-kong-api': {
+          '@martingale/kong-api': {
             url: '/api/kong/apis/martingale-kong-api'
           },
-          'martingale-kong-plugins': {
+          '@martingale/kong-plugins': {
             url: '/api/kong/apis/martingale-kong-api/plugins',
             root: 'data'
           },
-          'martingale-kube-api': {
+          '@martingale/kube-api': {
             url: '/api/kong/apis/martingale-kube-api'
           },
-          'martingale-kube-plugins': {
+          '@martingale/kube-plugins': {
             url: '/api/kong/apis/martingale-kube-api/plugins',
             root: 'data'
           }
